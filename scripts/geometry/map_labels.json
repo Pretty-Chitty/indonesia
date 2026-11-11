@@ -1,0 +1,488 @@
+{
+ "_about": "Hand identification of the regions build_map.py detects on the DLC board (art/build/land.png numbers). Region ids are the builder's; the builder asserts every land region is named exactly once. 'groups' are dashed outlines that join islets into one land area (RULES.md M1). 'arrows' join two land areas across water (M3); 'source' says whether the arrow detector found it or it was read off the board by eye and should be checked on art/build/map_check.png.",
+ "provinces": {
+  "Aceh": [
+   7,
+   8,
+   10,
+   16
+  ],
+  "Sumatera Utara": [
+   11,
+   13,
+   17,
+   31,
+   47,
+   54
+  ],
+  "Riau": [
+   27,
+   29,
+   39,
+   44,
+   48,
+   37,
+   38,
+   41,
+   49,
+   59
+  ],
+  "Jambi": [
+   72,
+   74,
+   75,
+   77,
+   81
+  ],
+  "Sumatera Barat": [
+   45,
+   64,
+   69,
+   90,
+   98,
+   103
+  ],
+  "Bengkulu": [
+   95,
+   101,
+   115
+  ],
+  "Sumatera Selatan": [
+   93,
+   96,
+   107,
+   108,
+   111,
+   97
+  ],
+  "Lampung": [
+   123,
+   124,
+   125,
+   130
+  ],
+  "Jawa Barat": [
+   134,
+   135,
+   136,
+   139,
+   141,
+   144,
+   150,
+   153
+  ],
+  "Jawa Tengah": [
+   142,
+   147,
+   148,
+   157
+  ],
+  "Jawa Timur": [
+   146,
+   149,
+   155,
+   156,
+   159,
+   160
+  ],
+  "Bali": [
+   164,
+   165
+  ],
+  "Nusa Tenggara Barat": [
+   170,
+   175,
+   166,
+   176
+  ],
+  "Nusa Tenggara Timur": [
+   173,
+   172,
+   163,
+   171,
+   169,
+   174,
+   180,
+   158,
+   181
+  ],
+  "Sarawak": [
+   4,
+   6,
+   9,
+   15
+  ],
+  "Kalimantan Barat": [
+   23,
+   28,
+   32
+  ],
+  "Kalimantan Tengah": [
+   33,
+   56,
+   83,
+   92,
+   71
+  ],
+  "Kalimantan Timur": [
+   12,
+   19,
+   21,
+   36,
+   57
+  ],
+  "Kalimantan Selatan": [
+   82,
+   99,
+   102
+  ],
+  "Sulawesi Utara": [
+   26,
+   34,
+   35,
+   40
+  ],
+  "Sulawesi Tengah": [
+   50,
+   62,
+   66,
+   51
+  ],
+  "Sulawesi Selatan": [
+   88,
+   91,
+   121
+  ],
+  "Sulawesi Tenggara": [
+   94,
+   113,
+   117,
+   118,
+   122,
+   128
+  ],
+  "Halmahera": [
+   18,
+   22,
+   30,
+   42,
+   58,
+   76
+  ],
+  "Maluku": [
+   85,
+   87,
+   109,
+   105,
+   106,
+   110,
+   131,
+   132,
+   140,
+   143,
+   151,
+   152,
+   161,
+   167,
+   168
+  ],
+  "Papua": [
+   60,
+   65,
+   112,
+   52,
+   53,
+   73,
+   86,
+   63,
+   68,
+   79,
+   84
+  ]
+ },
+ "uncertain_provinces": {
+  "31,47,54": "Nias/Mentawai loop lies off both Sumatera Utara and Sumatera Barat; the arrow from the mainland comes from Sumatera Utara (area 13)",
+  "51": "Banggai islet between Sulawesi Utara and Sulawesi Tengah; arrows to both",
+  "85,87": "Sula islands: arrows to Buru (Maluku) only",
+  "97": "Bangka: the arrow comes from Jambi (81) but the printed name beside it is Sumatera Selatan"
+ },
+ "groups": [
+  {
+   "name": "Riau islands",
+   "members": [
+    37,
+    38,
+    41,
+    49,
+    59
+   ]
+  },
+  {
+   "name": "Nias and Mentawai",
+   "members": [
+    31,
+    47,
+    54
+   ]
+  },
+  {
+   "name": "Mentawai south",
+   "members": [
+    90,
+    98,
+    103
+   ]
+  },
+  {
+   "name": "Sulawesi Tenggara islets",
+   "members": [
+    117,
+    118,
+    122,
+    128
+   ]
+  },
+  {
+   "name": "Solor and Alor",
+   "members": [
+    169,
+    171
+   ]
+  },
+  {
+   "name": "Kei",
+   "members": [
+    131,
+    132,
+    140,
+    143
+   ]
+  },
+  {
+   "name": "Aru",
+   "members": [
+    151,
+    152
+   ]
+  },
+  {
+   "name": "Tanimbar",
+   "members": [
+    161,
+    167,
+    168
+   ]
+  },
+  {
+   "name": "Biak",
+   "members": [
+    63,
+    68,
+    79,
+    84
+   ]
+  },
+  {
+   "name": "Raja Ampat",
+   "members": [
+    52,
+    53,
+    73,
+    86
+   ]
+  }
+ ],
+ "arrows": [
+  {
+   "a": 10,
+   "b": 16,
+   "source": "detected"
+  },
+  {
+   "a": 16,
+   "b": 31,
+   "source": "detected"
+  },
+  {
+   "a": 13,
+   "b": 31,
+   "source": "eye"
+  },
+  {
+   "a": 54,
+   "b": 69,
+   "source": "eye"
+  },
+  {
+   "a": 69,
+   "b": 90,
+   "source": "eye"
+  },
+  {
+   "a": 90,
+   "b": 64,
+   "source": "eye"
+  },
+  {
+   "a": 27,
+   "b": 37,
+   "source": "detected"
+  },
+  {
+   "a": 44,
+   "b": 37,
+   "source": "detected"
+  },
+  {
+   "a": 81,
+   "b": 108,
+   "source": "detected"
+  },
+  {
+   "a": 81,
+   "b": 97,
+   "source": "detected"
+  },
+  {
+   "a": 146,
+   "b": 149,
+   "source": "eye"
+  },
+  {
+   "a": 160,
+   "b": 165,
+   "source": "detected"
+  },
+  {
+   "a": 164,
+   "b": 170,
+   "source": "detected"
+  },
+  {
+   "a": 170,
+   "b": 175,
+   "source": "eye"
+  },
+  {
+   "a": 166,
+   "b": 173,
+   "source": "detected"
+  },
+  {
+   "a": 163,
+   "b": 171,
+   "source": "eye"
+  },
+  {
+   "a": 171,
+   "b": 174,
+   "source": "eye"
+  },
+  {
+   "a": 158,
+   "b": 174,
+   "source": "detected"
+  },
+  {
+   "a": 174,
+   "b": 161,
+   "source": "detected"
+  },
+  {
+   "a": 40,
+   "b": 51,
+   "source": "eye"
+  },
+  {
+   "a": 51,
+   "b": 62,
+   "source": "eye"
+  },
+  {
+   "a": 113,
+   "b": 128,
+   "source": "eye"
+  },
+  {
+   "a": 85,
+   "b": 87,
+   "source": "eye"
+  },
+  {
+   "a": 87,
+   "b": 109,
+   "source": "eye"
+  },
+  {
+   "a": 18,
+   "b": 22,
+   "source": "detected"
+  },
+  {
+   "a": 42,
+   "b": 58,
+   "source": "eye"
+  },
+  {
+   "a": 58,
+   "b": 76,
+   "source": "eye"
+  },
+  {
+   "a": 106,
+   "b": 109,
+   "source": "detected"
+  },
+  {
+   "a": 112,
+   "b": 131,
+   "source": "detected"
+  },
+  {
+   "a": 131,
+   "b": 151,
+   "source": "detected"
+  },
+  {
+   "a": 151,
+   "b": 161,
+   "source": "detected"
+  },
+  {
+   "a": 52,
+   "b": 65,
+   "source": "detected"
+  },
+  {
+   "a": 60,
+   "b": 63,
+   "source": "detected"
+  },
+  {
+   "a": 42,
+   "b": 76,
+   "source": "eye"
+  },
+  {
+   "a": 173,
+   "b": 181,
+   "source": "eye"
+  }
+ ],
+ "uncertain_arrows": {
+  "163-171": "the arrow's land end is the eastern tip of Flores; it may belong to area 172 rather than 163",
+  "52-65": "the Raja Ampat loop may be two loops ([52,53] and [73,86]); the arrow between the loop and the mainland is near area 65"
+ },
+ "not_land_into": {
+  "133": 127
+ },
+ "_not_land_into": "133, the Sunda Strait, is the Java Sea's (127): no sea line crosses the channel up to it, and the printed sea line across its mouth is the Java Sea's border with the ocean south of it (126). The two seas are therefore adjacent there, for shipping and ship expansion.",
+ "not_land": [
+  46,
+  55,
+  133,
+  179,
+  67
+ ],
+ "_not_land": "Regions the detector takes for land that are open water closed off by arrows, sea lines and coasts: 133 the Sunda Strait (no arrow is printed across it), 179 the strait between Flores and Sumba (the arrow joins 173 and 181), 67 the water between Halmahera's southern islets (the arrows join 76 to 58 and to 42). 46 and 55 the Gulf of Tomini, the bay inside Sulawesi's arms (pale paper, no sea line inside, open to the sea east of it). The builder folds them into the sea round them."
+}

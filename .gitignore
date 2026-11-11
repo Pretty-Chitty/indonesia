@@ -1,0 +1,18 @@
+.env
+node_modules
+dist
+coverage
+docs
+build
+yarn 
+.DS_Store
+.ftpSettings.json
+
+# Rulebook and raw sources (kept locally, not committed): the extracted TTS textures in art/ are inputs to
+# scripts/art and scripts/geometry, which write the shipped assets into src/assets and src/geometry
+*.pdf
+rules.txt
+/pages/
+/art/
+/shots/
+/results/

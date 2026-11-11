@@ -1,0 +1,1123 @@
+{
+ "en": {
+  "welcome": {
+   "hash": "a6f7ca206bc3",
+   "sentenceTimes": [
+    0,
+    2.618,
+    5.828,
+    12.358
+   ],
+   "duration": 14.803
+  },
+  "goal": {
+   "hash": "39a818bac4c2",
+   "sentenceTimes": [
+    0,
+    5.323,
+    8.535,
+    13.748,
+    16.099
+   ],
+   "duration": 23.42
+  },
+  "whole-game": {
+   "hash": "8fb441db5958",
+   "sentenceTimes": [
+    0,
+    2.455,
+    4.967,
+    9.013,
+    10.982
+   ],
+   "duration": 13.049
+  },
+  "map": {
+   "hash": "41d9469f3c1e",
+   "sentenceTimes": [
+    0,
+    3.002,
+    11.504,
+    18.613
+   ],
+   "duration": 22.577
+  },
+  "year": {
+   "hash": "f897c6ff9979",
+   "sentenceTimes": [
+    0,
+    17.743,
+    23.949
+   ],
+   "duration": 25.939
+  },
+  "city-cards": {
+   "hash": "8c62462e0cbe",
+   "sentenceTimes": [
+    0,
+    2.23,
+    6.323,
+    9.614,
+    15.121,
+    21.986,
+    24.789
+   ],
+   "duration": 26.478
+  },
+  "others-sultan-city": {
+   "hash": "127db080a4eb",
+   "sentenceTimes": [
+    0,
+    2.084,
+    4.406,
+    9.193
+   ],
+   "duration": 11
+  },
+  "others-sumatran-city": {
+   "hash": "f2491bdff7bc",
+   "sentenceTimes": [
+    0,
+    4.572,
+    9.475
+   ],
+   "duration": 11.791
+  },
+  "your-card": {
+   "hash": "c7aaf1de5ad0",
+   "sentenceTimes": [
+    0,
+    1.097,
+    5.2
+   ],
+   "duration": 9.339
+  },
+  "build-city": {
+   "hash": "c819c2dc4e09",
+   "sentenceTimes": [
+    0,
+    4.046
+   ],
+   "duration": 8.847
+  },
+  "city-built": {
+   "hash": "ed35ce69372a",
+   "sentenceTimes": [
+    0,
+    3.649,
+    8.705,
+    10.871
+   ],
+   "duration": 12.609
+  },
+  "order": {
+   "hash": "dd63adbb198c",
+   "sentenceTimes": [
+    0,
+    2.392,
+    6.236,
+    9.302
+   ],
+   "duration": 14.904
+  },
+  "bid-explain": {
+   "hash": "e19ef94630ac",
+   "sentenceTimes": [
+    0,
+    6.157,
+    9.684,
+    10.923,
+    12.334,
+    15.881
+   ],
+   "duration": 18.906
+  },
+  "others-sultan-bid": {
+   "hash": "cd7ca857efe6",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.754
+  },
+  "others-sumatran-bid": {
+   "hash": "7480371e8b80",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.068
+  },
+  "bid-up": {
+   "hash": "c51ef39c25c6",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.837
+  },
+  "bid-confirm": {
+   "hash": "704b10c04237",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.98
+  },
+  "new-order": {
+   "hash": "b370a7a82b96",
+   "sentenceTimes": [
+    0,
+    3.591,
+    7.462,
+    8.664
+   ],
+   "duration": 10.422
+  },
+  "no-mergers": {
+   "hash": "8e56b3b46c07",
+   "sentenceTimes": [
+    0,
+    3.995,
+    5.812,
+    8.964,
+    10.131
+   ],
+   "duration": 12.053
+  },
+  "companies": {
+   "hash": "3b6c93ce99a2",
+   "sentenceTimes": [
+    0,
+    2.625,
+    5.354,
+    11.937
+   ],
+   "duration": 15.066
+  },
+  "slots": {
+   "hash": "c8ab11dbaea0",
+   "sentenceTimes": [
+    0,
+    2.372,
+    3.815,
+    9.207
+   ],
+   "duration": 12.661
+  },
+  "pick-company": {
+   "hash": "a70fb24b609a",
+   "sentenceTimes": [
+    0,
+    7.605,
+    10.673
+   ],
+   "duration": 13.798
+  },
+  "place-plantation": {
+   "hash": "15cde6d04ecb",
+   "sentenceTimes": [
+    0,
+    5.962,
+    9.587,
+    15.177
+   ],
+   "duration": 17.609
+  },
+  "plantation-placed": {
+   "hash": "4ded46cc9b96",
+   "sentenceTimes": [
+    0,
+    3.86
+   ],
+   "duration": 6.966
+  },
+  "others-sultan-company": {
+   "hash": "2607ad310a82",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 5.724
+  },
+  "others-sumatran-company": {
+   "hash": "19d1148bd71f",
+   "sentenceTimes": [
+    0,
+    4.148,
+    7.08,
+    13.367
+   ],
+   "duration": 21.407
+  },
+  "research": {
+   "hash": "31c3cfd3e17c",
+   "sentenceTimes": [
+    0,
+    2.091,
+    9.33,
+    14.137
+   ],
+   "duration": 18.137
+  },
+  "research-mergers": {
+   "hash": "79e28a584d4d",
+   "sentenceTimes": [
+    0,
+    1.097,
+    2.484,
+    8.952
+   ],
+   "duration": 11.484
+  },
+  "others-sultan-research": {
+   "hash": "e174f2877e1d",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.079
+  },
+  "others-sumatran-research": {
+   "hash": "a6f190ebbe14",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 4.995
+  },
+  "operations": {
+   "hash": "cf9fd5021371",
+   "sentenceTimes": [
+    0,
+    2.567,
+    10.468
+   ],
+   "duration": 16.986
+  },
+  "operate-rice": {
+   "hash": "116c16be50b3",
+   "sentenceTimes": [
+    0,
+    1.097,
+    4.255
+   ],
+   "duration": 9.742
+  },
+  "selling": {
+   "hash": "2889a951ff71",
+   "sentenceTimes": [
+    0,
+    3.013,
+    6.536,
+    13.946,
+    19.416
+   ],
+   "duration": 25.777
+  },
+  "sell": {
+   "hash": "547adf7b684e",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.369
+  },
+  "sold": {
+   "hash": "df285fe263b1",
+   "sentenceTimes": [
+    0,
+    3.233,
+    9.683,
+    16.318
+   ],
+   "duration": 21.035
+  },
+  "free-expansion": {
+   "hash": "0178752f621d",
+   "sentenceTimes": [
+    0,
+    2.502,
+    14.989
+   ],
+   "duration": 20.036
+  },
+  "expand": {
+   "hash": "bd7e87a526a5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.31
+  },
+  "expanded": {
+   "hash": "42f7d57dd28b",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 4.344
+  },
+  "others-sultan-operate": {
+   "hash": "233a06e5e2c5",
+   "sentenceTimes": [
+    0,
+    2.265,
+    5.22
+   ],
+   "duration": 8.361
+  },
+  "others-sumatran-operate": {
+   "hash": "a2fa4625a729",
+   "sentenceTimes": [
+    0,
+    3.254,
+    11.399,
+    13.561,
+    17.059
+   ],
+   "duration": 20.339
+  },
+  "growth": {
+   "hash": "1dbca2a888d5",
+   "sentenceTimes": [
+    0,
+    2.311,
+    6.59,
+    10.961,
+    17.64,
+    23.692
+   ],
+   "duration": 34.017
+  },
+  "year-2": {
+   "hash": "e934ed5b1b0a",
+   "sentenceTimes": [
+    0,
+    3.721,
+    6.885,
+    12.197
+   ],
+   "duration": 15.802
+  },
+  "bid-2": {
+   "hash": "f78fc93f1735",
+   "sentenceTimes": [
+    0,
+    1.097
+   ],
+   "duration": 6.409
+  },
+  "mergers-now": {
+   "hash": "43f7118cd45b",
+   "sentenceTimes": [
+    0,
+    2.056,
+    3.664,
+    13.166
+   ],
+   "duration": 15.992
+  },
+  "merger-why": {
+   "hash": "bfa8f3cb5ff5",
+   "sentenceTimes": [
+    0,
+    7.762
+   ],
+   "duration": 10.496
+  },
+  "announce": {
+   "hash": "236066d5ad7b",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.756
+  },
+  "announce-second": {
+   "hash": "f3993486321e",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.752
+  },
+  "merger-table": {
+   "hash": "55a6cb05756d",
+   "sentenceTimes": [
+    0,
+    2.512,
+    4.399,
+    8.036
+   ],
+   "duration": 16.47
+  },
+  "payout": {
+   "hash": "a583d30afba1",
+   "sentenceTimes": [
+    0,
+    7.134
+   ],
+   "duration": 10.216
+  },
+  "open-bid": {
+   "hash": "441b3525fe8e",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.93
+  },
+  "others-sultan-raises": {
+   "hash": "33647e6a9628",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.809
+  },
+  "raise": {
+   "hash": "fba178fce117",
+   "sentenceTimes": [
+    0,
+    1.805
+   ],
+   "duration": 6.722
+  },
+  "others-sultan-passes": {
+   "hash": "ddfa2668466c",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.783
+  },
+  "won": {
+   "hash": "07257ab76433",
+   "sentenceTimes": [
+    0,
+    1.179,
+    7.291,
+    12.865
+   ],
+   "duration": 15.495
+  },
+  "finish": {
+   "hash": "f30e8aed2f5d",
+   "sentenceTimes": [
+    0,
+    3.5,
+    9.392,
+    13.833
+   ],
+   "duration": 15.334
+  },
+  "confirm-city": {
+   "hash": "87d2872ff18e",
+   "sentenceTimes": [
+    0,
+    3.581,
+    7.303
+   ],
+   "duration": 8.675
+  },
+  "confirm-bid": {
+   "hash": "71f9a110e55a",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.306
+  },
+  "confirm-company": {
+   "hash": "b5c748533112",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.891
+  },
+  "confirm-research": {
+   "hash": "b0dcd768e1c7",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.736
+  },
+  "confirm-operate": {
+   "hash": "40a0fd2b590a",
+   "sentenceTimes": [
+    0,
+    4.034
+   ],
+   "duration": 7.297
+  },
+  "confirm-bid-2": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "confirm-open": {
+   "hash": "65947aab73a1",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.112
+  },
+  "confirm-raise": {
+   "hash": "8882c177a380",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.17
+  },
+  "others-sumatran-passes": {
+   "hash": "de32f42af66a",
+   "sentenceTimes": [
+    0,
+    4.972
+   ],
+   "duration": 9.506
+  },
+  "symbols": {
+   "hash": "8f3ee320cb7c",
+   "sentenceTimes": [
+    0,
+    4.076,
+    11.175,
+    18.786,
+    27.082
+   ],
+   "duration": 29.129
+  },
+  "forced": {
+   "hash": "deacf7cb9679",
+   "sentenceTimes": [
+    0,
+    2.025,
+    2.933,
+    11.133,
+    15.051,
+    19.585,
+    25.553
+   ],
+   "duration": 27.486
+  },
+  "others-sumatran-bid-2": {
+   "hash": "bfa715096a77",
+   "sentenceTimes": [
+    0,
+    2.118,
+    13.385,
+    14.97
+   ],
+   "duration": 16.887
+  },
+  "others-sultan-bid-2": {
+   "hash": "22d99c8160a8",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.254
+  },
+  "merger-rules": {
+   "hash": "98a2b19c87c5",
+   "sentenceTimes": [
+    0,
+    2.2,
+    10.051,
+    16.294,
+    20.117
+   ],
+   "duration": 23.757
+  },
+  "acquisitions-2": {
+   "hash": "7277f87853c8",
+   "sentenceTimes": [
+    0,
+    1.44,
+    4.557
+   ],
+   "duration": 13.36
+  },
+  "others-sumatran-spice": {
+   "hash": "b0ae01a613f6",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 5.307
+  },
+  "others-sultan-spice": {
+   "hash": "ef69cad087c1",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 4.714
+  },
+  "spice-now": {
+   "hash": "8f2dd8afc9c6",
+   "sentenceTimes": [
+    0,
+    1.98,
+    9.251
+   ],
+   "duration": 13.215
+  },
+  "others-sumatran-hull": {
+   "hash": "4ed5a2b0ac82",
+   "sentenceTimes": [
+    0,
+    1.12,
+    2.944,
+    10.011
+   ],
+   "duration": 15.311
+  },
+  "research-mergers-3": {
+   "hash": "79dbeaa8535a",
+   "sentenceTimes": [
+    0,
+    2.683,
+    7.541,
+    8.882
+   ],
+   "duration": 11.414
+  },
+  "confirm-research-2": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "others-sultan-research-2": {
+   "hash": "889587a04ae1",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.114
+  },
+  "lampung-full": {
+   "hash": "765d29a462a0",
+   "sentenceTimes": [
+    0,
+    1.173,
+    6.621
+   ],
+   "duration": 9.519
+  },
+  "others-sumatran-spice-run": {
+   "hash": "7ecebfb33907",
+   "sentenceTimes": [
+    0,
+    2.729
+   ],
+   "duration": 5.475
+  },
+  "operate-rice-2": {
+   "hash": "3799b1992934",
+   "sentenceTimes": [
+    0,
+    1.097
+   ],
+   "duration": 4.806
+  },
+  "selling-2": {
+   "hash": "ffae21b59e8c",
+   "sentenceTimes": [
+    0,
+    3.2,
+    5.226,
+    7.507,
+    12.738
+   ],
+   "duration": 14.702
+  },
+  "sell-2": {
+   "hash": "10517980dc12",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.929
+  },
+  "sell-rest": {
+   "hash": "85c0b326e9c7",
+   "sentenceTimes": [
+    0,
+    4.703
+   ],
+   "duration": 9.085
+  },
+  "sold-2": {
+   "hash": "c02d88e12c01",
+   "sentenceTimes": [
+    0,
+    3.287,
+    10.131,
+    12.721
+   ],
+   "duration": 16.012
+  },
+  "paid-expansion": {
+   "hash": "d651c155b0cd",
+   "sentenceTimes": [
+    0,
+    3.546,
+    12.921,
+    17.536
+   ],
+   "duration": 19.748
+  },
+  "decline": {
+   "hash": "5a74f469cd28",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.149
+  },
+  "confirm-operate-2": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "others-sultan-pays": {
+   "hash": "8d9863141c7f",
+   "sentenceTimes": [
+    0,
+    2.509,
+    5.289
+   ],
+   "duration": 10.647
+  },
+  "growth-2": {
+   "hash": "ce4dd2b96246",
+   "sentenceTimes": [
+    0,
+    1.173,
+    4.511,
+    8.081
+   ],
+   "duration": 12.127
+  },
+  "year-3": {
+   "hash": "808822ffed33",
+   "sentenceTimes": [
+    0,
+    3.024,
+    6.397,
+    10.315
+   ],
+   "duration": 11.877
+  },
+  "others-sumatran-city-b": {
+   "hash": "cbacae2cce0c",
+   "sentenceTimes": [
+    0,
+    5.591,
+    7.219
+   ],
+   "duration": 10.116
+  },
+  "your-card-b": {
+   "hash": "f20995e72d85",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 4.986
+  },
+  "build-city-b": {
+   "hash": "0f5a64b07f02",
+   "sentenceTimes": [
+    0,
+    2.513
+   ],
+   "duration": 6.931
+  },
+  "confirm-city-b": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "others-sultan-city-b": {
+   "hash": "f31cb75ec243",
+   "sentenceTimes": [
+    0,
+    5.286
+   ],
+   "duration": 10.54
+  },
+  "era-b-companies": {
+   "hash": "fe3e80511500",
+   "sentenceTimes": [
+    0,
+    4.775,
+    8.926,
+    12.008,
+    17.886
+   ],
+   "duration": 20.609
+  },
+  "others-sumatran-bid-3": {
+   "hash": "2977d1e6674a",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.641
+  },
+  "bid-3": {
+   "hash": "78e83e234d2e",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.166
+  },
+  "confirm-bid-3": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "others-sultan-bid-3": {
+   "hash": "b34ed26b9a34",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.225
+  },
+  "siap-saji": {
+   "hash": "31bec47ea4e0",
+   "sentenceTimes": [
+    0,
+    2.439,
+    11.397
+   ],
+   "duration": 17.335
+  },
+  "siap-saji-how": {
+   "hash": "3497b09eaad3",
+   "sentenceTimes": [
+    0,
+    7.402
+   ],
+   "duration": 13.011
+  },
+  "announce-ss": {
+   "hash": "b9cb1da555c5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.485
+  },
+  "announce-ss-second": {
+   "hash": "aefc4b35f62d",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.058
+  },
+  "ss-table": {
+   "hash": "c1e8aa29b6fd",
+   "sentenceTimes": [
+    0,
+    5.074
+   ],
+   "duration": 8.969
+  },
+  "open-ss": {
+   "hash": "d4a8ac4dfd04",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.555
+  },
+  "confirm-open-ss": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "others-pass-ss": {
+   "hash": "6f1eed258928",
+   "sentenceTimes": [
+    0,
+    5.413
+   ],
+   "duration": 7.225
+  },
+  "give-up-why": {
+   "hash": "84853f2e294c",
+   "sentenceTimes": [
+    0,
+    4.267,
+    7.222
+   ],
+   "duration": 12.521
+  },
+  "give-up": {
+   "hash": "66e7fd5d74e6",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.815
+  },
+  "give-up-2": {
+   "hash": "43dedcfd67ec",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.504
+  },
+  "confirm-give-up": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "siap-saji-made": {
+   "hash": "070d5819c4b0",
+   "sentenceTimes": [
+    0,
+    4.064
+   ],
+   "duration": 9.377
+  },
+  "acquisitions-3": {
+   "hash": "6ba382c3c19f",
+   "sentenceTimes": [
+    0,
+    2.81
+   ],
+   "duration": 5.906
+  },
+  "others-sumatran-rubber": {
+   "hash": "f4a795362835",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 2.903
+  },
+  "others-sultan-rubber": {
+   "hash": "f19e4c1271bb",
+   "sentenceTimes": [
+    0,
+    3.373,
+    7.477,
+    13.62,
+    18.526
+   ],
+   "duration": 20.361
+  },
+  "others-sumatran-research-3": {
+   "hash": "61a0b7a58ada",
+   "sentenceTimes": [
+    0,
+    1.12
+   ],
+   "duration": 3.165
+  },
+  "research-expansion": {
+   "hash": "5da029420b33",
+   "sentenceTimes": [
+    0,
+    2.009,
+    8.04
+   ],
+   "duration": 10.804
+  },
+  "confirm-research-3": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "others-sultan-research-3": {
+   "hash": "50d7a256aa99",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.896
+  },
+  "others-sumatran-ship-3": {
+   "hash": "da2f98f09b33",
+   "sentenceTimes": [
+    0,
+    1.173
+   ],
+   "duration": 5.063
+  },
+  "operate-ss": {
+   "hash": "9fb4edb9b70a",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 3.756
+  },
+  "sell-ss": {
+   "hash": "619ad2e21d96",
+   "sentenceTimes": [
+    0,
+    4.046
+   ],
+   "duration": 6.578
+  },
+  "ss-sold": {
+   "hash": "bbb8556d71ec",
+   "sentenceTimes": [
+    0,
+    6.283
+   ],
+   "duration": 12.681
+  },
+  "expand-ss": {
+   "hash": "d62aa2bf81e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.325
+  },
+  "expand-ss-2": {
+   "hash": "e56c37a8037a",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.272
+  },
+  "confirm-operate-3": {
+   "hash": "2542f4fb04e5",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 1.103
+  },
+  "others-run-3": {
+   "hash": "16038e0a9a52",
+   "sentenceTimes": [
+    0
+   ],
+   "duration": 4.157
+  },
+  "growth-3": {
+   "hash": "7cd9662ef35e",
+   "sentenceTimes": [
+    0,
+    1.173,
+    4.532,
+    7.58
+   ],
+   "duration": 10.59
+  },
+  "ending": {
+   "hash": "2e54f5fad505",
+   "sentenceTimes": [
+    0,
+    2.114,
+    7.874,
+    12.047,
+    15.757
+   ],
+   "duration": 22.529
+  },
+  "display": {
+   "hash": "405984b6893b",
+   "sentenceTimes": [
+    0,
+    7.343,
+    12.318
+   ],
+   "duration": 16.617
+  }
+ }
+}

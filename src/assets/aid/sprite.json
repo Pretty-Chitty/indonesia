@@ -1,0 +1,12 @@
+{
+  "default": {
+    "maxWidth": 1024,
+    "format": "jpg"
+  },
+  "overrides": {
+    "note": {
+      "maxWidth": 300,
+      "format": "jpg"
+    }
+  }
+}

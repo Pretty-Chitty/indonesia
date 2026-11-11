@@ -1,0 +1,65 @@
+{
+  "id": "indonesia",
+  "major": 1,
+  "minPlayers": 2,
+  "maxPlayers": 5,
+  "configurationOptions": [
+    {
+      "fieldName": "money",
+      "config": {
+        "label": "Money",
+        "choices": [
+          {
+            "id": "secret",
+            "label": "Secret"
+          },
+          {
+            "id": "open",
+            "label": "Open"
+          }
+        ]
+      },
+      "currentValue": "secret"
+    }
+  ],
+  "version": "1.0.1",
+  "coreVersion": "2.1.0",
+  "backgroundColor": "#1E1B0D",
+  "foregroundColor": "#F4EEDBE6",
+  "name": "Indonesia",
+  "licenseInformation": "Indonesia is © Splotter Spellen. This implementation is a fan port for personal use.",
+  "implementationNotes": "Implements the 2009 English rulebook for 2–5 players. Money is secret by default, as the book says: you see only your own cash, Bank and earnings, and everyone's amounts and their history are shown when the game ends. Set the Money option to Open to show every player's money throughout. The second-edition board's extra 'Hull Company' row is not used. Goods sold to a city are shown with the wooden goods markers on the city's goods display, as many tables play it, rather than the book's cardboard counters.",
+  "publisher": "Splotter Spellen",
+  "designer": "Jeroen Doumen, Joris Wiersinga",
+  "artist": "Jan Lipiński, Ynze Moedt, Jeroen Kesselaar",
+  "tutorialVideoUrl": "",
+  "rulesPdfUrl": "https://www.splotter.nl/games/indonesia/",
+  "purchaseUrl": "https://www.splotter.nl/games/indonesia/",
+  "publisherUrl": "https://www.splotter.nl",
+  "repositoryUrl": "",
+  "description": "Build the economy of the Indonesian archipelago: start rice, spice, rubber and oil plantations and shipping lines, sell goods to growing cities, and buy out your rivals in merger auctions. Whoever has the most money when era C ends wins.",
+  "boxArt": "https://pretty-chitty-dev.b-cdn.net/indonesia/9e589cdb1b33194c1bb6.ff70a39d.jpg",
+  "screenshot": "https://pretty-chitty-dev.b-cdn.net/indonesia/cf2376d7a72880b13739.87eee0e5.jpg",
+  "demos": [
+    {
+      "id": "demo",
+      "kind": "demo",
+      "title": "Demo"
+    },
+    {
+      "id": "tutorial",
+      "kind": "tutorial",
+      "title": "How to play",
+      "locales": [
+        "en"
+      ],
+      "titles": {
+        "en": "How to play"
+      },
+      "steps": 131,
+      "requires": []
+    }
+  ],
+  "webEntry": "https://pretty-chitty-dev.b-cdn.net/indonesia/game.952db6e39320b5994774.js",
+  "nodeEntry": "https://pretty-chitty-dev.b-cdn.net/indonesia/node.3ca457e4f7ee2b173fd1.js"
+}

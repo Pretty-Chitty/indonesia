@@ -1,0 +1,37 @@
+{
+  "name": "indonesia",
+  "version": "1.0.1",
+  "main": "src/Indonesia.ts",
+  "author": "Josh Breckman <jbreckman@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@fontsource/dancing-script": "^5.3.0",
+    "@fontsource/eb-garamond": "^5.3.0",
+    "@fontsource/quicksand": "^5.2.10",
+    "@pretty-chitty/core": "file:/var/folders/tn/yf1msxms47q0_vfh6dcstdxm0000gn/T/pretty-chitty-indonesia-1793562873.tgz",
+    "color": "^4.2.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.158.0"
+  },
+  "devDependencies": {
+    "@pretty-chitty/cli": "file:../pretty-chitty-cli",
+    "@types/react": "^18.2.34",
+    "@types/react-dom": "^18.2.14",
+    "terser-webpack-plugin": "^5.6.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.0"
+  },
+  "scripts": {
+    "start": "pretty-chitty-cli watch",
+    "build": "pretty-chitty-cli build",
+    "deploy": "pretty-chitty-cli deploy",
+    "tutorial:check": "node scripts/tutorial/coverage.mjs && node scripts/tutorial/run.mjs check",
+    "tutorial:coverage": "node scripts/tutorial/coverage.mjs",
+    "tutorial:trace": "node scripts/tutorial/run.mjs trace",
+    "tutorial:search": "node scripts/tutorial/run.mjs search",
+    "tutorial:cues": "node scripts/tutorial/run.mjs cues",
+    "tutorial:audio": "node scripts/tutorial/audio.mjs",
+    "tutorial:voices": "node scripts/tutorial/voices.mjs"
+  }
+}
