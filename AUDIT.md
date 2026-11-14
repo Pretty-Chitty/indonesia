@@ -11,7 +11,7 @@ taken), ❌ missing, 🎨 deliberate simplification. Mechanical checks at the en
 | C2, D3 | ✅ | `consts.ts` CITY_CARDS (asserted 15, 5 per era); `CityCard.hiddenPropertiesForSerialization` | a card's face is hidden from everyone but its holder (and undealt cards from everyone) until its era begins; then it is turned face up, used and discarded |
 | C3, D4 | ✅ | `consts.ts` DEEDS (asserted 24 by type and era) | |
 | C4 | ✅ | `PlayerAid.tsx` | the aid is a dropdown |
-| C5 | ✅ | `Cube`, `Disc`; the ownership hut is drawn beside every goods marker (`GoodsMarker` ornament, recoloured on merger) | ⚠️ the box has 8 huts per player; the port draws one per plantation without a limit |
+| C5 | ✅ | `Cube`, `Disc`; the ownership hut is drawn beside every goods marker (`GoodsMarker` ornament, recoloured on merger) | ⚠️ the box has 8 huts per player; the port draws one per plantation without a limit (Q-huts) |
 | C6 | ✅ | `Ship`; unlimited | neutral ships never needed: a merged line recolours its ships |
 | C7 | ✅ | `CitySupply` 12/8/3 | finite, on the table |
 | C8, C9 | ✅ | money is a number; goods markers unlimited | goods sold are shown with the wooden goods markers, not the book's cardboard counters (the developer's table) |
@@ -69,7 +69,7 @@ taken), ❌ missing, 🎨 deliberate simplification. Mechanical checks at the en
 | P3.13 | ✅ | buttons gated by cash; an announcer who cannot pay the nominal cannot announce | |
 | P3.14 | ✅ | pass is final; ends when all others passed | |
 | P3.15 | ✅ | `resolveMerger` split by pieces | |
-| P3.16 | ✅ | deeds combined, ships recoloured, type kept per company | |
+| P3.16 | ✅ | deeds combined, ships recoloured; a player's lines alternate prahu and steamer (`Ship.ts`, Q-ship-type) | |
 | P3.17 | ✅ | `Company.shipLimit` sums deeds; expansion from any ship | |
 | P3.18 | ✅ | one Company chit = one slot | |
 | P3S.1–P3S.4 | ✅ | `legalMergers`, `mergerTerms(siapSaji)` | |
@@ -108,12 +108,12 @@ taken), ❌ missing, 🎨 deliberate simplification. Mechanical checks at the en
 | P6P.3–P6P.7 | ✅ | `logistics.ts` flow network; per-line nodes, hull × ships per sea, uses spent per company | checked by `scripts/test/logistics.ts` |
 | P6P.8, P6P.9 | ✅ | `deliverOne` | fee waived for own ships |
 | P6P.10 | ✅ | maximum computed first; only choices that keep it are offered (`legalDeliveryChoices`) | 🎨 the route for a chosen (zone, line, city) is the cheapest one; the book lets the player pick any route |
-| P6P.11 | ✅ | free expansion, first area mandatory (Q-free-expansion) | |
+| P6P.11 | ✅ | `expand(…, "free")`: every area up to the Expansion level is mandatory while one is legal (Q-free-expansion) | |
 | P6P.12, P6P.13 | ✅ | `expansionTargets` | |
 | P6P.14 | ✅ | one expansion loop per company | |
 | P6P.15 | ✅ | paid expansion from cash | |
 | P6P.16 | ✅ | `setOperated(true)` | |
-| P6L.1 | ✅ | earnings settled in phase 1; doubled when the game ends there | |
+| P6L.1 | ✅ | earnings settled in phase 1; doubled when the game ends there | kept apart in `Player.earnings` (paid expansion spends `cash` only); the mat's Cash and the cash spark show spendable cash, with "+N earned this year" under it |
 | P6L.2 | ⚠️ | `addEarnings(-fee)` lets the earnings stack go negative; it is settled against cash in phase 1 | a negative year is subtracted (doubled at the end) from cash, as the book says; no mid-phase bookkeeping needed |
 | P6L.3 | 🎨 | earnings cannot fund paid expansions (Q-earnings) | |
 
@@ -121,12 +121,12 @@ taken), ❌ missing, 🎨 deliberate simplification. Mechanical checks at the en
 
 | Rule | Status | Location | Note |
 |---|---|---|---|
-| P7.1 | ✅ | `cityCanGrow` | ⚠️ with nothing produced on the board no city grows (the book's "needs only rice" case reads as needing at least one good) |
+| P7.1 | ✅ | `cityCanGrow` | ⚠️ with nothing produced on the board every size 1 and 2 city grows (Q-growth-empty) |
 | P7.2 | ✅ | delivered goods sink into their city, then the display follows (`City.clearGoods`, `closeDisplay`) | |
 | P7.3 | ✅ | size++ and ring colour; the display comes out next time at the new size (`City.openDisplay`) | |
-| P7.4, P7.5 | ✅ | supply check; first player chooses | size 2 → 3 resolved before 1 → 2 so a returned size-2 marker is not reused the same phase (⚠️ reading) |
+| P7.4, P7.5 | ✅ | supply check; first player chooses | size 2 → 3 resolved before 1 → 2, and the size-2 markers returned are available to the size 1 cities (⚠️ reading, Q-growth-order) |
 | P7.6 | ✅ | `producedGoods` | |
-| V1–V3 | ✅ | `Indonesia.run` end | tie → earlier in order of play |
+| V1–V3 | ✅ | `Indonesia.run` end; `executeNewEra` | tie → earlier in order of play; at the end each Bank is emptied into cash (after secret money is revealed), so a player's total is one pile |
 | T1, T2 | ✅ | `setup.ts`, `buildCities` | |
 | M7 | ✅ | `Tracks` panel | the Turn Order track and R&D table are cut from the board into their own panel (the board shows sea paper there) |
 | M1–M6 | ✅ | `geometry/map.ts`, `mapIndex.ts` | 36 arrows, 10 islet groups; province membership of islets per MAP.md (Q-map) |
@@ -143,8 +143,11 @@ taken), ❌ missing, 🎨 deliberate simplification. Mechanical checks at the en
   increments, which is four verbs about the prompt, not four options).
 - No `Math.random`, `Date.now` or module-level mutable state in game logic; all randomness is `turn.takeRng`.
 - Every `new GoodsMarker` / `new Ship` is an unlimited supply by the book (C6, C9); city markers are finite.
-- `minPlayers 2`, `maxPlayers 5` match the rulebook. `implementationNotes` describes the money option (closed by
-  default) and the unused "Hull Company" row.
+- `minPlayers 2`, `maxPlayers 5` match the rulebook. `implementationNotes` gives every reading a player would notice:
+  the money option (secret by default), the unused "Hull Company" row, the Tracks panel, selling city by city by the
+  cheapest route (P6P.10), free expansion by the full Expansion level (Q-free-expansion), earnings kept from paid expansion
+  (Q-earnings), growth of every city when nothing is produced (Q-growth-empty), the goods displays with wooden markers (C9), prahus
+  and steamers for a player's two lines (Q-ship-type) and the tutorial's table.
 
 ## Not implemented
 

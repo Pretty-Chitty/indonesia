@@ -97,7 +97,7 @@ export class Root extends RootChit<Player> {
 
   override getLayout(
     width: number,
-    _height: number,
+    height: number,
     playerId: string,
   ): LayoutNode {
     const me = this.players.filter((p) => p.playerId === playerId);
@@ -158,8 +158,13 @@ export class Root extends RootChit<Player> {
         ],
       };
     }
-    // desktop: the tabbed table large at the left; the mats in a column at the right, the viewer's first (LAYOUT.md)
-    const left = Math.max(520, Math.floor(width * 0.64));
+    // desktop: the tabbed table large at the left; the mats in a column at the right, the viewer's first (LAYOUT.md).
+    // A short window (a phone held sideways) stacks the mats in little height, so each is wide and short: it gets a
+    // larger share of the width or its companies are cut off at the right
+    const short = height < 600;
+    const left = Math.max(520, Math.floor(width * (short ? 0.58 : 0.64)));
+    // the column's share follows its minimum width, so a short window asks for wider mats too
+    const wide = <M extends { minWidth: number }>(m: M): M => (short ? { ...m, minWidth: Math.max(m.minWidth, 400) } : m);
     return {
       direction: "horizontal",
       collapseOrder: 30,
@@ -169,11 +174,11 @@ export class Root extends RootChit<Player> {
           direction: "vertical",
           collapseOrder: 2,
           splits: [
-            ...mine,
+            ...mine.map(wide),
             {
               direction: "optimizePreferVertical",
               collapseOrder: 1,
-              splits: theirs,
+              splits: theirs.map(wide),
             },
           ],
         },

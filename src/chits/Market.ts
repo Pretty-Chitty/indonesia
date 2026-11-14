@@ -1,11 +1,11 @@
 import { CameraSpec, ChildOutlet, Chit, ChitRenderSpec, Ordered, OrderedOutlet, PanelTab } from "@pretty-chitty/core";
 import { StaticImage } from "@pretty-chitty/core";
-import { Group, Mesh, MeshPhongMaterial, PlaneGeometry, RepeatWrapping, Vector3 } from "three";
-import { TABLE } from "../art";
+import { Group, Vector3 } from "three";
 import { CompaniesTabIcon } from "../canvas/Icons";
 import { DEED_H, DEED_W, Era } from "../consts";
 import { MergerTable } from "./MergerTable";
 import { Deed } from "./Deed";
+import { tableTop } from "../render";
 
 /** The companies available this era (S6, P1.10): the unacquired deeds in a row, with the later eras' deeds in a
  *  face-down pile beside them. A start marker on the board marks each one's province. */
@@ -24,12 +24,8 @@ export class Market extends Chit {
   override render(spec: ChitRenderSpec): void {
     spec.object = new Group();
     spec.childrenOffsetZ = 0;
-    const tex = StaticImage.texture(TABLE);
-    tex.wrapS = tex.wrapT = RepeatWrapping;
-    tex.repeat.set(8, 16);
-    const table = new Mesh(new PlaneGeometry(120, 120), new MeshPhongMaterial({ map: tex, shininess: 5 }));
+    const table = tableTop(120);
     table.position.z = -0.02;
-    table.receiveShadow = true;
     spec.ornaments.push(table);
     spec.camera = new CameraSpec();
     spec.camera.paddingTop = 6;

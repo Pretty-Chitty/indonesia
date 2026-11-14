@@ -6,6 +6,7 @@ import { landById, ringToWorld, toWorld } from "../geometry/mapIndex";
 import { clickable, flatPolygon, galleryFit, UNDER_BOARD, underBoardShape } from "../render";
 import { GoodsMarker } from "./GoodsMarker";
 import { City } from "./City";
+import { GoodsDisplay } from "./GoodsDisplay";
 
 /** What each era brings to a province (M6): its city cards and its company deeds, read from the same tables the
  *  rules use. These are the symbols printed beside each province's name. */
@@ -28,6 +29,8 @@ export class LandArea extends Chit {
   /** at most one goods marker (P4.6, P6P.12) */
   @Ordered(new Vector3(0, 0, 0)) goods = new OrderedOutlet<GoodsMarker>();
   @ChildOutlet(new Vector3(0, 0, 0)) city?: City;
+  /** the city's goods display while it is out (City.openDisplay): it stands at its own spot beside the city */
+  @Ordered(new Vector3(0, 0, 0)) display = new OrderedOutlet<GoodsDisplay>();
   /** a piece on its way out of this area, on top of the goods marker: a sold good leaving for its ship, or a new
    *  goods marker on its way to a neighbouring area (P6P.6, P6P.12) */
   @Ordered(new Vector3(0, 0, GOODS_MARKER_THICKNESS)) transit = new OrderedOutlet<Chit>();

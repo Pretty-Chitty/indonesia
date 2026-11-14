@@ -154,8 +154,14 @@ const MADURA_ARROW: PxBox = [1540, 1318, 1595, 1350];
 // ------------------------------------------------------------------------------------- checks ---
 const hasButton = (ctx: Ctx, label: string) => !!ctx.prompt?.buttons.some((b) => b.label.toLowerCase() === label.toLowerCase());
 
-/** The player pressed the engine's Confirm: one was showing during this step and is gone now. */
-function confirmed(hint: string): Checker<Player, Root> {
+/** The last Confirm the player was shown, and during which step (recorded by every step's check: `watchConfirms`). */
+let lastConfirm: { prompt: string; step: number } | undefined;
+
+type ConfirmCheck = Checker<Player, Root> & { step?: number };
+
+/** The player pressed the engine's Confirm: one was showing during this step, or appeared during the step before,
+ *  and is gone now. */
+function confirmed(hint: string): ConfirmCheck {
   let seen: string | undefined;
   const check = ((ctx: Ctx) => {
     if (hasButton(ctx, "Confirm")) {
@@ -163,13 +169,30 @@ function confirmed(hint: string): Checker<Player, Root> {
       return hint;
     }
     return seen !== undefined && ctx.prompt?.id !== seen ? true : hint;
-  }) as Checker<Player, Root>;
-  // A Confirm already showing when the step starts counts as seen: it can be answered before the
-  // check is next read
+  }) as ConfirmCheck;
+  check.step = undefined; // set by watchConfirms
   check.reset = (ctx) => {
-    seen = hasButton(ctx as Ctx, "Confirm") ? ctx.prompt!.id : undefined;
+    // A Confirm already showing when the step starts counts as seen: it can be answered before the check is next
+    // read. So does one that came while the step before was still speaking: the engine lets a step finish its line
+    // before moving on, and a player who taps Confirm in that time leaves this step nothing to wait for
+    if (hasButton(ctx as Ctx, "Confirm")) seen = ctx.prompt!.id;
+    else seen = lastConfirm && check.step !== undefined && lastConfirm.step === check.step - 1 ? lastConfirm.prompt : undefined;
   };
   return check;
+}
+
+/** Every step's check notes any Confirm the player is shown while it runs (a satisfied step is still checked
+ *  while it finishes speaking), and each `confirmed` check learns its own place in the script. */
+function watchConfirms(s: TutorialStep<Player, Root>, index: number) {
+  const inner = s.waitFor as ConfirmCheck | undefined;
+  if (!inner) return;
+  if ("step" in inner) inner.step = index;
+  const outer = ((ctx: Ctx) => {
+    if (hasButton(ctx, "Confirm")) lastConfirm = { prompt: ctx.prompt!.id, step: index };
+    return inner(ctx);
+  }) as Checker<Player, Root>;
+  if (inner.reset) outer.reset = (ctx) => inner.reset!(ctx);
+  s.waitFor = outer;
 }
 
 /**
@@ -860,6 +883,7 @@ function intro(t: Strings, pins: Pins): TutorialSpec<Player, Root> {
     const ai = pins.ai[s.id];
     if (ai) s.ai = Object.fromEntries(Object.entries(ai).map(([id, moves]) => [id, forced(moves)]));
   }
+  steps.forEach((s, i) => watchConfirms(s, i));
   return defineTutorial<Player, Root>({
     id: "tutorial",
     locale: t.locale,

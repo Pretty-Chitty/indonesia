@@ -140,22 +140,20 @@ async function operateProduction(root: Root, turn: T, p: Player, company: Compan
       if (!cityChits.has(city)) cityChits.set(city, []);
       cityChits.get(city)!.push(ch);
     }
-    // or the line, by any of its ships a delivery can start from
-    const shipLines = new Map<Ship, number>();
-    for (const ch of choices) {
-      for (const ship of root.board.sea(ch.route[0]).ships.filter((x) => x.companyId === problem.lines[ch.line].companyId)) shipLines.set(ship, ch.line);
-    }
+    // or the line, by any of its ships a delivery can sail on: every one of them, not one per sea, since a player
+    // zoomed in on part of the map taps the ship in front of them
+    const shipLines = shipsOnRoutes(root, problem, choices);
     let chosen: Delivery | undefined;
     let all = false;
     await ask(turn, p, [
       Chit.pick([...shipLines.keys()], async (ship) => {
-        const line = shipLines.get(ship)!;
-        // the cheapest delivery of that line to each city it can still serve
+        const line = problem.lines[shipLines.get(ship)![0].line];
+        // the cheapest delivery through that ship to each city it can still serve
         const byCity = new Map<City, (typeof choices)[number]>();
-        for (const o of choices.filter((x) => x.line === line)) {
+        for (const o of shipLines.get(ship)!) {
           const city = root.board.land(problem.cities[o.city].landArea).city!;
           const cur = byCity.get(city);
-          if (!cur || o.fee < cur.fee || (o.fee === cur.fee && o.route.length < cur.route.length)) byCity.set(city, o);
+          if (!cur || cheaper(o, cur)) byCity.set(city, o);
         }
         if (byCity.size === 1) {
           chosen = [...byCity.values()][0];
@@ -165,7 +163,7 @@ async function operateProduction(root: Root, turn: T, p: Player, company: Compan
           Chit.pick([...byCity.keys()], (city) => {
             chosen = byCity.get(city);
           })
-            .message(`choose the city to ship to with ${problem.lines[line].ownerId === p.playerId ? "your" : "that"} line`)
+            .message(`choose the city to ship to with ${line.ownerId === p.playerId ? "your" : "that"} line`)
             .context(ship)
             .focus(root.board)
             .ai("deliver.city"),
@@ -186,11 +184,9 @@ async function operateProduction(root: Root, turn: T, p: Player, company: Compan
           chosen = [...byLine.values()][0];
           return;
         }
+        // every ship of those lines on a route to the city, each standing for the cheapest delivery through it
         const reps = new Map<Ship, (typeof options)[number]>();
-        for (const o of byLine.values()) {
-          const ship = root.board.sea(o.route[0]).ships.find((s) => s.companyId === problem.lines[o.line].companyId)!;
-          reps.set(ship, o);
-        }
+        for (const [ship, through] of shipsOnRoutes(root, problem, options)) reps.set(ship, through.reduce((a, b) => (cheaper(b, a) ? b : a)));
         await ask(turn, p, [
           Chit.pick([...reps.keys()], (ship) => {
             chosen = reps.get(ship);
@@ -225,7 +221,7 @@ async function operateProduction(root: Root, turn: T, p: Player, company: Compan
   }
 
   if (sold > 0 && sold === goodsOnBoard) {
-    // P6P.11: sold everything: must expand for free, at least one area if there is room (Q-free-expansion)
+    // P6P.11: sold everything: must expand for free, by the full Expansion level while there is room (Q-free-expansion)
     await expand(root, turn, p, company, "free");
   } else {
     // P6P.15: may buy expansions at the good's value each, from cash (Q-earnings)
@@ -239,6 +235,29 @@ async function operateProduction(root: Root, turn: T, p: Player, company: Compan
     for (const m of usedMarkers) m.used = false;
     turn.flush();
   }
+}
+
+type DeliveryChoice = ReturnType<typeof legalDeliveryChoices>["choices"][number];
+
+/** Lower fee first, then the shorter route. */
+function cheaper(a: DeliveryChoice, b: DeliveryChoice): boolean {
+  return a.fee < b.fee || (a.fee === b.fee && a.route.length < b.route.length);
+}
+
+/** Every ship a delivery among `options` could sail on (a ship of its line in a sea of its route), with those
+ *  deliveries. */
+function shipsOnRoutes(root: Root, problem: DeliveryProblem, options: DeliveryChoice[]): Map<Ship, DeliveryChoice[]> {
+  const out = new Map<Ship, DeliveryChoice[]>();
+  for (const o of options) {
+    const companyId = problem.lines[o.line].companyId;
+    for (const sea of new Set(o.route)) {
+      for (const ship of root.board.sea(sea).ships.filter((s) => s.companyId === companyId)) {
+        if (!out.has(ship)) out.set(ship, []);
+        out.get(ship)!.push(o);
+      }
+    }
+  }
+  return out;
 }
 
 /** One good from a zone to a city along a line's ships: the counter on the city, the value to the seller's
@@ -321,7 +340,8 @@ async function expand(root: Root, turn: T, p: Player, company: Company, mode: "f
     }
     let land: LandArea | undefined;
     let done = false;
-    const mustPlace = mode === "free" && placed === 0;
+    // a free expansion is not optional: it stops only at the Expansion level or when no area is left (P6P.11)
+    const mustPlace = mode === "free";
     await ask(turn, p, [
       Chit.pick(targets, (l) => {
         land = l;
@@ -329,8 +349,8 @@ async function expand(root: Root, turn: T, p: Player, company: Company, mode: "f
         .message(mode === "free" ? `expand ${company.name} for free (${placed} of ${p.rnd.expansion})` : `buy an area for ${company.name} at ${money(price)} (${placed} of ${p.rnd.expansion})`)
         .help(
           mode === "free"
-            ? "The company sold everything, so it expands for free: at least one area, up to your Expansion level. An area must touch one of the company's zones (arrows count), be empty, and not touch another company's zone of the same good."
-            : "The company did not sell everything, so it may buy areas at the good's value each, up to your Expansion level, paid from cash.",
+            ? "The company sold everything, so it must expand for free: one area for each step of your Expansion research, while there is room. An area must touch one of the company's zones (arrows count), be empty, and not touch another company's zone of the same good."
+            : `The company did not sell everything, so it may buy areas at the good's value each, up to your Expansion level. They are paid from the cash you had before this year's earnings: ${money(p.cash)} (earnings can be spent once the year ends).`,
         )
         .focus(root.board)
         .context(company)

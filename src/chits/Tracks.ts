@@ -1,12 +1,12 @@
-import { CameraSpec, ChildOutlet, Chit, ChitRenderSpec, Ordered, OrderedOutlet, PanelTab, StaticImage } from "@pretty-chitty/core";
+import { CameraSpec, ChildOutlet, Chit, ChitRenderSpec, Ordered, OrderedOutlet, PanelTab } from "@pretty-chitty/core";
 import { CitySupply } from "./CitySupply";
-import { BoxGeometry, Mesh, MeshPhongMaterial, PlaneGeometry, RepeatWrapping, Vector3 } from "three";
-import { TABLE, TRACKS_ART } from "../art";
+import { BoxGeometry, Mesh, Vector3 } from "three";
+import { TRACKS_ART } from "../art";
 import { TracksTabIcon } from "../canvas/Icons";
 import { BOARD_PX_PER_UNIT, BOARD_THICKNESS } from "../consts";
 import { TABLE_CELLS } from "../geometry/map";
 import { TRACKS_RECT } from "../geometry/tracks";
-import { artMaterial, colorMaterial } from "../render";
+import { artMaterial, colorMaterial, tableTop } from "../render";
 import { TableCell } from "./TableCell";
 
 /** The Turn Order track and the Research & Development table (M7, S4, S5), cut from the board's lower left into
@@ -47,12 +47,8 @@ export class Tracks extends Chit {
     slab.receiveShadow = true;
     spec.object = slab;
     spec.childrenOffsetZ = 0;
-    const tex = StaticImage.texture(TABLE);
-    tex.wrapS = tex.wrapT = RepeatWrapping;
-    tex.repeat.set(8, 16);
-    const table = new Mesh(new PlaneGeometry(120, 120), new MeshPhongMaterial({ map: tex, shininess: 5 }));
+    const table = tableTop(120);
     table.position.z = -BOARD_THICKNESS - 0.02;
-    table.receiveShadow = true;
     spec.ornaments.push(table);
     spec.camera = new CameraSpec();
     spec.camera.paddingTop = 4;

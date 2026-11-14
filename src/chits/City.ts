@@ -1,68 +1,69 @@
-import { Chit, ChitRenderSpec, Ordered, OrderedOutlet } from "@pretty-chitty/core";
-import { ExtrudeGeometry, Mesh, Path, Shape, Vector3 } from "three";
-import { CITY_COLOR, CITY_RING_DIAMETER, CITY_RING_HEIGHT, CitySize, GOODS_DISPLAY_RAISE } from "../consts";
+import { Chit, ChitRenderSpec } from "@pretty-chitty/core";
+import { ExtrudeGeometry, Mesh, Path, Shape } from "three";
+import { CITY_COLOR, CITY_RING_DIAMETER, CITY_RING_HEIGHT, CitySize } from "../consts";
 import { DISPLAY_SPOTS } from "../geometry/displaySpots";
 import { clickable, colorMaterial, galleryFit, LIFT, outlineFor } from "../render";
 import { DeliveredGood } from "./DeliveredGood";
 import { GoodsDisplay } from "./GoodsDisplay";
+import type { LandArea } from "./LandArea";
 
 /** A city marker (C7): a wooden ring in the colour of its size, on the LandArea it was built in (P1.7). Its goods
- *  display (P1.6) lives inside it and comes out, floating beside it at its area's spot, while it holds the year's
- *  delivered goods (P6P.2). */
+ *  display (P1.6) rises out of it to its area's spot while it holds the year's delivered goods (P6P.2), and sinks
+ *  back into it at City Growth. */
 export class City extends Chit {
   size: CitySize = 1;
   /** the land area it stands in, for its display's spot (DISPLAY_SPOTS) */
   areaId = 0;
-  /** the size its display came out at: the spot it stands on (a city grows while its display is still out) */
-  displaySize: CitySize = 1;
 
-  /** the goods display while it holds goods: at its area's spot for this size, raised off the board */
-  @Ordered(new Vector3(0, 0, 0)) shown = new OrderedOutlet<GoodsDisplay>();
-  /** where the display waits between years: inside the ring, hidden once it is there (shouldRenderChild) */
-  @Ordered(new Vector3(0, 0, 0)) pocket = new OrderedOutlet<GoodsDisplay>();
+  private get land(): LandArea {
+    return this.parent as LandArea;
+  }
 
-  display(): GoodsDisplay {
-    return this.shown.length ? this.shown.get(0) : this.pocket.get(0);
+  /** the goods display, while it is out (it stands on the city's land area, LandArea.display) */
+  display(): GoodsDisplay | undefined {
+    const d = this.land?.display;
+    return d?.length ? d.get(0) : undefined;
   }
 
   /** this year's goods sold to the city (P6P.2) */
   deliveredGoods(): DeliveredGood[] {
-    return this.display().goods();
+    return this.display()?.goods() ?? [];
   }
 
-  /** The display comes out of the city to its spot, at the city's size (the year's first good sold here). */
+  /** The display comes out of the city to its spot, at the city's size (the year's first good sold here). It is a
+   *  new piece each year, made inside the city (its fallback, which never draws it), so it is seen rising out of
+   *  the ring; at City Growth it is taken away and slides back in (P7.3: "replace its goods display"). Moving one
+   *  display between a hidden outlet of the city and a shown one did not work: on other players' screens it often
+   *  stayed invisible, and the goods landing on it with it. */
   openDisplay(): GoodsDisplay {
-    const d = this.display();
-    if (d.parentOutlet === "pocket") {
-      // it changes size only here, out of sight inside the city (P7.3: "replace its goods display")
-      d.size = this.size;
-      d.angle = DISPLAY_SPOTS[this.areaId][this.size - 1].angle;
-      this.displaySize = this.size;
-      d.out = true;
-      this.shown.add(d);
-    }
+    const out = this.display();
+    if (out) return out;
+    const spot = DISPLAY_SPOTS[this.areaId]?.[this.size - 1] ?? { dx: 0, dy: 0, angle: 0 };
+    const d = new GoodsDisplay().set((x) => {
+      x.parentFallback = this;
+      x.size = this.size;
+      x.angle = spot.angle;
+      x.dx = spot.dx;
+      x.dy = spot.dy;
+    });
+    this.land.display.add(d);
     return d;
   }
 
-  /** The year's goods are used up (P7.2): each sinks into the city and is gone; then the empty display follows. */
+  /** The year's goods are used up (P7.2): each sinks into the city and is gone. */
   clearGoods() {
     // a good's fallback is this city (set as it lands), which never draws it: removed, it slides into the ring
     for (const g of this.deliveredGoods()) g.removeFromParent();
-    this.display().heldText = "nothing yet";
   }
 
+  /** Then the empty display follows them into the city. */
   closeDisplay() {
-    const d = this.display();
-    if (d.parentOutlet === "shown") {
-      d.out = false;
-      this.pocket.add(d);
-    }
+    this.display()?.removeFromParent();
   }
 
-  /** The display in its pocket and the goods it held are inside the ring: drawn while they sink in, hidden once
-   *  there. */
+  /** The display and the goods it held go into the ring: drawn while they move, hidden once there. */
   override shouldRenderChild(child: Chit): boolean {
-    return child.parentOutlet !== "pocket" && !(child instanceof DeliveredGood);
+    return !(child instanceof DeliveredGood) && !(child instanceof GoodsDisplay);
   }
 
   override render(spec: ChitRenderSpec): void {
@@ -78,12 +79,12 @@ export class City extends Chit {
     mesh.castShadow = true;
     mesh.receiveShadow = true;
     spec.object = mesh;
-    const spot = DISPLAY_SPOTS[this.areaId]?.[this.displaySize - 1];
-    if (spot) spec.outletPositions.shown = new Vector3(spot.dx, spot.dy, GOODS_DISPLAY_RAISE);
     spec.childrenOffsetZ = 0;
     spec.zLiftRatio = LIFT.piece;
     // amber ring on tan land, red ring on the red-brown islands: outline in its own colour, darkened
     spec.highlight.color = outlineFor(CITY_COLOR[this.size]);
+    // the display and goods rising out of it or sinking back keep their own outlines, not the city's
+    spec.highlight.childrenInheritOutline = false;
     spec.showDetailsOnLongPress = true;
     galleryFit(spec, 1, 1, 260);
     spec.summary = `**Size ${this.size} city**. It buys ${this.size} of each good produced anywhere on the board, and grows one size at the end of a year in which it received all of them. Its goods display beside it shows what it has bought this year.`;

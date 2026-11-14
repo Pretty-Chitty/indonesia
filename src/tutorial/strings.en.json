@@ -14,6 +14,10 @@
   "title": "How to play",
   "intro": "**Indonesia: How to play**\n\nA guided game against the Sultan of Solo and the businessman from North Sumatra: three years, two eras, every rule. About half an hour.",
   "you": "You",
+  "pronounce": {
+    "siap saji": "see-ahp sah-jee",
+    "Utara": "oo-tah-rah"
+  },
   "spoken": {
     "rupiah": [
       "rupiah",
@@ -76,7 +80,7 @@
     "display": "Your rice rode both of the Sumatran's ships to your city, and landed on the card that came out of it: the city's goods display. It has a circle for each size of the city, and each circle holds one of each good. So what the city still buys this year is whatever its circles still lack.",
     "sold": "Look at the ships' round markers: they flipped over. A ship carries one good for each company each year, and its markers turn back when that company's run is over. Rice sells for 20 rupiah, and every ship it rides charges 5: two ships, 10 to the Sumatran. That leaves you 10, kept apart as this year's earnings until the year ends.",
     "forced": "Would you rather not pay a rival? Too bad. Selling isn't a choice: a company must sell as many goods as it can, every time it runs, even when the fees eat the whole price. If they eat more than that, the loss comes out of this year's earnings. When there are several ways to sell, you pick which city, and whose ships. The cheapest isn't always best: you might pay 15 to a player who's behind rather than 10 to the leader. You just can't sell less.",
-    "free-expansion": "You sold every good your company has. A company that does that grows, for free: it must take at least one new area of land, empty, and touching one of its plantations, across a province border if need be, or joined to one by an arrow. How many it may take at once is your Expansion research: one, for now.",
+    "free-expansion": "You sold every good your company has. A company that does that grows, for free: it must take new areas of land, each empty and touching one of its plantations, across a province border if need be, or joined to one by an arrow. How many is your Expansion research: one, for now.",
     "expand": "Tap this area, next to your first plantation.",
     "expanded": "Two plantations now, and this one touches the ship beside your city.",
     "confirm-operate": "Your deed has turned face down: that company is done for the year. Confirm, and the Sultan runs Bali rice.",

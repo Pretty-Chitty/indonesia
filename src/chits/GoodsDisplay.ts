@@ -1,23 +1,23 @@
 import { Chit, ChitRenderSpec, Ordered, OrderedOutlet, StaticImage } from "@pretty-chitty/core";
 import { MeshPhongMaterial, Vector3 } from "three";
 import { DISPLAY } from "../art";
-import { CitySize, GOOD_LABEL, GOODS_DISPLAY_H, GOODS_DISPLAY_THICKNESS } from "../consts";
+import { CitySize, GOOD_LABEL, GOODS_DISPLAY_H, GOODS_DISPLAY_RAISE, GOODS_DISPLAY_THICKNESS } from "../consts";
 import { CITY_DISPLAYS } from "../geometry/cityDisplays";
 import { clickable, colorMaterial, extrudedGlyph, galleryFit, LIFT } from "../render";
 import { DeliveredGood } from "./DeliveredGood";
 
 /** A city goods display (C7, P1.6): the rulebook's lobed card in the colour of its city's size, pointing at the city,
  *  with one lobe per size. Each lobe holds one set of goods sold to the city this year, one of each good (P6P.2), so
- *  a city that still buys a good has a lobe without it. It lives inside its city (City.pocket) and rises out to its
- *  area's spot when the year's first good is sold there; at City Growth the goods and then the display sink back into
- *  the city (P7.2), and it comes out next time at the city's new size (P7.3). */
+ *  a city that still buys a good has a lobe without it. It rises out of its city to its area's spot when the year's
+ *  first good is sold there (City.openDisplay); at City Growth the goods and then the display sink back into the city
+ *  (P7.2), and a new one comes out next time at the city's new size (P7.3). */
 export class GoodsDisplay extends Chit {
   size: CitySize = 1;
   /** the direction it lies away from its city (radians, y up), set as it comes out: its point is at its origin */
   angle = 0;
-  /** out beside its city (true) or inside it. Changing it re-renders the display as it comes out: a texture made
-   *  while it waited hidden in the city may have been reclaimed by the engine meanwhile (faceMaterial) */
-  out = false;
+  /** its spot from the city ring (DISPLAY_SPOTS for its area and size): it stands on the city's land area */
+  dx = 0;
+  dy = 0;
   /** what it holds, kept as text so the summary reads only this chit (set as goods arrive and leave) */
   heldText = "nothing yet";
 
@@ -66,6 +66,9 @@ export class GoodsDisplay extends Chit {
       const y = (ly - 0.5) * h - tip.y;
       spec.outletPositions[`lobe${i}`] = new Vector3(x * c - y * s, x * s + y * c, GOODS_DISPLAY_THICKNESS);
     });
+    spec.offsetX = this.dx;
+    spec.offsetY = this.dy;
+    spec.offsetZ = GOODS_DISPLAY_RAISE;
     spec.childrenOffsetZ = 0;
     spec.zLiftRatio = LIFT.piece;
     spec.showDetailsOnLongPress = true;

@@ -1,6 +1,5 @@
 import { Chit } from "@pretty-chitty/core";
 import { City } from "../chits/City";
-import { GoodsDisplay } from "../chits/GoodsDisplay";
 import { Player } from "../chits/Player";
 import { Root } from "../chits/Root";
 import { Era, ERAS } from "../consts";
@@ -42,6 +41,17 @@ export async function executeNewEra(root: Root) {
     root.gameOver = true;
     root.syncMoneySecrecy(); // secret money is everyone's again: the amounts and their whole history (S7)
     turn.log(`Era C has ended: ${left.length === 0 ? "every era C company was acquired" : "only one type of era C company is left"}. The game is over.`);
+    turn.flush();
+    // V2 counts cash and Bank together: each Bank is emptied into its owner's cash, in view of everyone, so a player's
+    // money ends as one pile and the end screen's Cash is their total
+    for (const p of root.players.copy()) {
+      if (p.bank === 0) continue;
+      const bank = p.bank;
+      p.bank = 0;
+      p.addCash(bank);
+      turn.log(`${p.logKey} adds their Bank of ${money(bank)} to their cash: ${money(p.total())} in all.`);
+      turn.flush();
+    }
     return;
   }
 
@@ -129,8 +139,7 @@ async function buildCity(root: Root, p: Player) {
     root.tracks.supply.take(1);
     const city = new City().set((c) => (c.areaId = site.areaId));
     site.city = city;
-    // with its size 1 goods display (P1.6), which waits inside the city until a good is first sold there
-    city.pocket.add(new GoodsDisplay().set((d) => (d.parentFallback = city)));
+    // its goods display (P1.6) comes out of it when a good is first sold there (City.openDisplay)
     root.cityCardStore.cards.add(card);
     turn.log(`${p.logKey} builds a city in ${site.province}.`);
     turn.flush();

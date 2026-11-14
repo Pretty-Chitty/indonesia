@@ -38,7 +38,15 @@ export default class Indonesia implements Game<Player, Root> {
     name: "Indonesia",
     licenseInformation: "Indonesia is © Splotter Spellen. This implementation is a fan port for personal use.",
     implementationNotes:
-      "Implements the 2009 English rulebook for 2–5 players. Money is secret by default, as the book says: you see only your own cash, Bank and earnings, and everyone's amounts and their history are shown when the game ends. Set the Money option to Open to show every player's money throughout. The second-edition board's extra 'Hull Company' row is not used. Goods sold to a city are shown with the wooden goods markers on the city's goods display, as many tables play it, rather than the book's cardboard counters.",
+      "Implements the 2009 English rulebook for 2–5 players, played on the second-edition board and pieces. " +
+      "Money is secret by default, as the book says: you see only your own cash, Bank and earnings, and everyone's amounts and their history are shown when the game ends. Set the Money option to Open to show every player's money throughout. " +
+      "Each player has one Hull track, as in the 2009 rules: the board's 'Hull Company' row is not used. The Turn Order track and the R&D table sit in their own panel beside the board. " +
+      "When a company operates, you choose its sales city by city. Only choices that still sell as many goods as possible are offered, each sale takes the cheapest route along the shipping line you pick, and 'sell the rest at the lowest fees' finishes them for you. " +
+      "A company that sold all its goods must expand by your full Expansion level, as far as there is room. " +
+      "This year's earnings reach your cash at the start of next year, so they cannot pay for paid expansions. " +
+      "In a year in which no goods are produced anywhere, every size 1 and 2 city grows, since it lacks nothing. Size 2 cities grow first, and size 1 cities may then take the markers they gave back. " +
+      "Goods sold to a city are shown with the wooden goods markers on the city's goods display, as many tables play it, rather than the book's cardboard counters. " +
+      "A player's first shipping line sails prahus and the second steamers, so the two are never confused. The tutorial is a three-player game with open money.",
     publisher: "Splotter Spellen",
     designer: "Jeroen Doumen, Joris Wiersinga",
     artist: "Jan Lipiński, Ynze Moedt, Jeroen Kesselaar",

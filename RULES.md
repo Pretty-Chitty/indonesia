@@ -169,7 +169,7 @@ interpretation I had to make.
 | P6P.8 | The production company's owner receives the goods value (D1) per good sold. |
 | P6P.9 | Of that, 5 rupiah per ship-use is paid to the owner of the ships used (a hull-2 ship used twice costs 10). Using your own ships costs nothing net. |
 | P6P.10 | Selling is **mandatory and maximal**: the company must sell as many goods as it can, even at a loss. The player chooses among the maximal deliveries (which cities, which lines) — rulebook example p.7. |
-| P6P.11 | If the company sold **all** its goods (as many as it has on the board), it **must expand for free** by 1 or more areas, up to the owner's Expansion level. *Reading:* at least one area if any is available, up to the level; see Q-free-expansion. |
+| P6P.11 | If the company sold **all** its goods (as many as it has on the board), it **must expand for free** by 1 or more areas, "depending on his R&D expansion track". *Reading:* as many areas as the owner's Expansion level while legal areas remain; see Q-free-expansion. |
 | P6P.12 | Expansion areas must be adjacent to one of the company's zones; only empty land areas (a city or any company's goods block); not across sea unless the two land areas are joined by an arrow on the board. |
 | P6P.13 | Expansion may not make two companies' zones of the same product adjacent (they would merge visually). If no legal area exists, the company cannot expand. |
 | P6P.14 | A merged company expands once per operation (Expansion 2 → 2 goods in total), placed anywhere legal around any of its zones. |
@@ -188,10 +188,10 @@ interpretation I had to make.
 
 | id | assertion |
 |---|---|
-| P7.1 | A city grows one size if it received, this year, the full demand of every goods type produced on the board: size 1 needs 1 of each, size 2 needs 2 of each. Size 3 cannot grow. |
+| P7.1 | A city grows one size if it received, this year, the full demand of every goods type produced on the board: size 1 needs 1 of each, size 2 needs 2 of each. Size 3 cannot grow. *Reading:* with nothing produced on the board, every size 1 and 2 city grows (Q-growth-empty). |
 | P7.2 | Discard all delivered goods from every city, whether or not it grew. |
 | P7.3 | Replace the marker and goods display with the next size (1 amber → 2 green → 3 red). |
-| P7.4 | If no marker of the needed size is left, the city cannot grow. |
+| P7.4 | If no marker of the needed size is left, the city cannot grow. *Reading:* size 2 cities grow first, and the size-2 markers they return may be taken by size 1 cities growing after them (the developer, 2026-11-14). |
 | P7.5 | If more cities qualify than markers remain, the player first in order of play chooses which grow. |
 | P7.6 | "Produced on the board" is literal: early on only rice (maybe spice) is demanded; late, if every rice and spice company has become siap saji, rice and spice are no longer demanded. |
 
@@ -312,19 +312,25 @@ Sulawesi Tenggara –/–/rice; Halmahera spice+ship/–/city; Maluku spice/city
 
 ---
 
-## Open questions
+## Rules questions
 
-| id | question | my default if unanswered |
+Put to the developer while porting and answered on 2026-11-14. Where the book was silent the developer asked for the
+most common reading; the sources are named.
+
+| id | question | ruling |
 |---|---|---|
-| Q-hull | The rulebook has one **Hull** track (P5.4, P5.8). The DLC (2nd-edition) board prints two rows, "Hull Player" and "Hull Company". Which should the port implement, and what does "Hull Company" mean in the edition you want? | Implement the rulebook: one Hull track per player; another player may advance it (P5.8). Render only the rows in use. |
-| Q-money | Open or closed money (S7)? Closed money hides cash from opponents; bids and payments are still visible. | A match option ("Money": secret or open), secret by default as the book says. Secret: each player sees only their own cash, Bank and earnings (mat, sparks, player aid show "–" for others) until the game ends, when everyone's amounts and their whole history are shown. Bots read only their own money then and estimate others' from the board. |
-| Q-sell | P6P.10: the player must sell the maximum. Should the port (a) let the player assign goods to cities/lines one at a time, offering only choices that keep the maximum reachable, with an "auto: cheapest" button, or (b) auto-resolve the cheapest maximal delivery and only let the player override? | (a). |
-| Q-free-expansion | P6P.11 "must expand for free… 1 or more areas, depending on his R&D expansion track": must the player place the full Expansion count when room exists, or at least one? | At least one if any legal area exists, up to the level, player's choice. |
-| Q-earnings | P6L.3: may this year's operations earnings be spent on paid expansions (P6P.15) later in the same phase? The book keeps earnings separate until next year. | No: paid expansions come from cash; earnings are unavailable until the year ends. |
-| Q-rnd-optional | P5.1 says players "may" research. Allow passing? | Allow, with the research prompt defaulting to a track. |
-| Q-auction-announcer | P3.14: the announcer bids first; may they later pass when outbid (obviously yes), and may they raise their own bid when everyone else has passed (no reason to)? | Auction ends when all but the high bidder have passed. |
-| Q-ship-type | P3.16 asks for a distinguishable ship *type* per company of one player (the DLC has two ship images per colour). Show the company's deed name on hover instead, and use one ship model? | One model per colour; the company is shown in the ship's summary and highlight. |
-| Q-map | The land areas, sea areas and arrows were segmented from the DLC board image; `MAP.md` lists what to check on `art/build/map_check.png` (island-group provinces, arrows read by eye). | as labelled |
-| Q-growth-empty | P7.1 when nothing is produced anywhere (year 1 with only shipping lines started): does a city with no demand grow? The book's "needs only rice" example implies at least one good must be produced. | No growth while nothing is produced. |
-| Q-route | P6P.10: when one line reaches a city by two routes of different length, the port uses the cheaper route. | cheapest route |
-| Q-stall | P1.1 ends an era only when its companies are all started or all of one type, and P4.5 caps companies at the Slots level. If every player's slots are full at Slots 5 and nobody merges to free one, the era, and so the game, never ends. The bots now merge their own companies to free a slot, so a stall needs a table that cannot or will not merge. Should the port add a house rule (e.g. an Acquisitions phase in which nobody may start a company discards the era's remaining companies)? | none yet: no house rule |
+| Q-hull | The rulebook has one **Hull** track (P5.4, P5.8). The DLC (2nd-edition) board prints two rows, "Hull Player" and "Hull Company". | The 2009 rulebook: one Hull track per player, which another player may advance (P5.8). The "Hull Company" row is not used. |
+| Q-money | Open or closed money (S7)? | A match option ("Money": secret or open), secret by default as the book says. Secret: each player sees only their own cash, Bank and earnings until the game ends, when everyone's amounts and their whole history are shown. Bots read only their own money then. |
+| Q-sell | P6P.10: how the player chooses a company's sales. | The player picks every sale, city by city, from the choices that keep the total sold at the maximum, and must keep selling while they can; "sell the rest at the lowest fees" finishes for them. |
+| Q-free-expansion | P6P.11 "must expand for free… 1 or more areas, depending on his R&D expansion track": the full Expansion count, or at least one? | The full count while there is room: the number of areas is the Expansion level, and the free expansion is compulsory. The book's "1 or more" is the range of the track. A widely used rules summary says the same: "must expand for free a number of areas equal to the Expansions R&D" (gist.github.com/instinctive/ad00373716cc4ccd0a695a2afe064c53). |
+| Q-earnings | P6L.3: may this year's earnings pay for paid expansions (P6P.15)? | No: paid expansions come from cash; this year's earnings become cash at the start of next year. |
+| Q-rnd-optional | P5.1 says players "may" research. Allow passing? | Yes. |
+| Q-auction-announcer | P3.14: when does an auction end? | When every player but the high bidder has passed. |
+| Q-ship-type | P3.16: a player's shipping lines must be told apart. | Two ships that look nothing alike: a player's first line sails prahus, the second steamers (`Ship.ts`). |
+| Q-map | The land areas, sea areas and arrows were segmented from the DLC board image; `MAP.md` lists what to check on `art/build/map_check.png`. | As labelled. |
+| Q-growth-empty | P7.1 when nothing is produced anywhere (year 1 with only shipping lines started): do cities grow? | Every size 1 and 2 city grows. The book says a city "needs only those goods that are being produced on the board", so with none produced it lacks nothing; the same rules summary says so outright: "if there are no goods produced then all size 1 and size 2 cities will grow". |
+| Q-route | P6P.10: one line reaching a city by two routes of different length. | The cheaper route. |
+| Q-siap-saji-give-up | P3S.6: which goods may be given up. | One at a time, keeping every remaining zone in one piece; a whole zone may go. |
+| Q-growth-order | P7.4: may a size-2 marker returned by a city growing to size 3 be used by a size 1 city in the same phase? | Yes: size 2 cities grow first, then size 1 cities, from the supply as it then stands. |
+| Q-huts | C5: the box has 8 ownership huts per player. | No limit: every plantation shows its owner's hut. |
+| Q-stall | P1.1 and P4.5 together could leave an era unable to end if every player's slots are full and nobody merges. | No house rule: the developer is not concerned (the bots merge to free a slot). |

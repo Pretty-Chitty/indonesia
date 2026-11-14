@@ -1681,9 +1681,10 @@
     webpack-cli "^5.1.4"
     webpack-dev-server "^4.15.1"
 
-"@pretty-chitty/core@file:../../../../../var/folders/tn/yf1msxms47q0_vfh6dcstdxm0000gn/T/pretty-chitty-indonesia-1793562873.tgz":
-  version "2.1.0"
-  resolved "file:../../../../../var/folders/tn/yf1msxms47q0_vfh6dcstdxm0000gn/T/pretty-chitty-indonesia-1793562873.tgz#4b1dc7f8c7452282c571389ac275d5e6d1d6e3d3"
+"@pretty-chitty/core@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@pretty-chitty/core/-/core-2.3.1.tgz#980f2df004a43205290f7c373d0492e0bbe03d52"
+  integrity sha512-C1mpIgFgR/UBuN92q21vtl4fV+JshPn23t5jSvRiDHfxt5m5TV9k6TEF7GgFE6tVxszUgvvbmntCOzKqIOrjig==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     "@emotion/react" "^11.11.0"

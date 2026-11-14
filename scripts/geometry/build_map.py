@@ -15,7 +15,7 @@ and saturation mask. The connected components of everything else are the regions
 script lettering and are dropped. Land-land adjacency through a black barrier is a province border, through
 a brown one an area line within a province.
 """
-import sys, site, json, os
+import sys, site, json, os, math
 sys.path.append(site.getusersitepackages())
 import cv2, numpy as np
 from scipy import ndimage as ndi
@@ -478,6 +478,15 @@ for p in adj:
 land_land = sorted((a, c) for a, c, ka, kc in adj_pairs if ka == 'land' and kc == 'land')
 sea_sea = sorted((a, c) for a, c, ka, kc in adj_pairs if ka == 'sea' and kc == 'sea')
 land_sea = sorted(((a, c) if ka == 'land' else (c, a)) for a, c, ka, kc in adj_pairs if ka != kc)
+# hand corrections, checked against the print (map_labels.json "coast_fixes"): each must change something
+for land, sea in L.get('coast_fixes', {}).get('remove', []):
+    if (land, sea) not in land_sea: raise SystemExit(f'coast fix: {land}-S{sea} is not a detected contact')
+    land_sea.remove((land, sea))
+for land, sea in L.get('coast_fixes', {}).get('add', []):
+    if (land, sea) in land_sea: raise SystemExit(f'coast fix: {land}-S{sea} is already a contact')
+    if land not in area_ids or sea not in sea_ids: raise SystemExit(f'coast fix: {land}-S{sea} names an unknown area')
+    land_sea.append((land, sea))
+land_sea.sort()
 arrow_pairs = []
 for ar in L['arrows']:
     a, c = area_of(ar['a']), area_of(ar['b'])
@@ -489,6 +498,52 @@ for a, c, _ in arrow_pairs:
     if (min(a, c), max(a, c)) not in land_land:
         land_land.append((min(a, c), max(a, c)))
 land_land.sort()
+# --- spots apart: neighbouring areas' pieces must not stand on each other ---------------------------------------
+# A goods marker or city stands on its area's pole, the deepest point of the area. Two thin neighbours can have poles
+# a third of a piece apart (Jawa Barat 134 and 136: 31 px), so a city on one and a plantation on the other overlapped
+# and read as one stacked on the other. For each neighbouring pair closer than a city ring beside a goods marker
+# (SPOT_APART), the shallower area's pole moves to its deepest point at least that far from every neighbour's pole;
+# where the area has no such point, to the point furthest from them that is still well inside it.
+SPOT_APART = 60                                                   # px: ring radius 26.5 + a marker's half-width 31.5
+def big_member(aid):
+    members = [i for i in land_ids if area_of(i) == aid] if aid in group_of.values() else [aid]
+    return max(members, key=lambda i: byid[i]['area'])
+land_nbrs = {}
+for a, c in land_land:
+    land_nbrs.setdefault(a, set()).add(c); land_nbrs.setdefault(c, set()).add(a)
+pole_of = lambda aid: byid[big_member(aid)]['pole']
+moved = {}
+for _ in range(4):
+    changed = False
+    for a, c in sorted(land_land):
+        pa, pc = pole_of(a), pole_of(c)
+        if math.hypot(pa[0] - pc[0], pa[1] - pc[1]) >= SPOT_APART: continue
+        # the shallower area moves first; once it has (an earlier pass), the deeper one makes the rest of the room
+        mover = min((a, c), key=lambda x: (byid[big_member(x)]['depth'], x))
+        if mover in moved and (a if mover == c else c) not in moved: mover = a if mover == c else c
+        rg = byid[big_member(mover)]
+        bx0, by0, bx1, by1 = rg['bbox']
+        sub = labels[by0:by1, bx0:bx1] == rg['label']
+        dt = ndi.distance_transform_edt(np.pad(sub, 1))[1:-1, 1:-1]
+        yy, xx = np.mgrid[by0:by1, bx0:bx1]
+        others = [pole_of(n) for n in land_nbrs.get(mover, ())]
+        far = np.full(sub.shape, np.inf)
+        for ox, oy in others: far = np.minimum(far, np.hypot(xx - ox, yy - oy))
+        ok = sub & (far >= SPOT_APART)
+        if ok.any():
+            k = int(np.where(ok, dt, -1).argmax())
+        else:
+            inside = sub & (dt >= min(8, dt.max()))
+            k = int(np.where(inside, far, -1).argmax())
+        ny, nx = np.unravel_index(k, sub.shape)
+        new = [int(nx + bx0), int(ny + by0)]
+        if new != rg['pole']:
+            moved.setdefault(mover, rg['pole']); rg['pole'] = new; changed = True
+    if not changed: break
+tight = [(a, c, round(math.hypot(pole_of(a)[0] - pole_of(c)[0], pole_of(a)[1] - pole_of(c)[1])))
+         for a, c in land_land if math.hypot(pole_of(a)[0] - pole_of(c)[0], pole_of(a)[1] - pole_of(c)[1]) < SPOT_APART]
+print(f'spots moved apart: {sorted(moved)}; still closer than {SPOT_APART} px: {tight}')
+
 coast = {a for a, _ in land_sea}
 print(f'areas: {len(area_ids)} land ({len(coast)} coastal), {len(sea_ids)} sea; adjacency land-land {len(land_land)}, sea-sea {len(sea_sea)}, coast {len(land_sea)}; arrows {len(arrow_pairs)}')
 for prov, members in L['provinces'].items():

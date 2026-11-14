@@ -99,7 +99,7 @@ export class PlayerAid extends DropdownChit {
       market: root.market.deeds.map((d) => d.name),
       supply: [root.tracks.supply.count(1), root.tracks.supply.count(2), root.tracks.supply.count(3)],
       produced: root.board.producedGoods(),
-      cities: root.board.cities().map(({ land, city }) => ({ province: land.province, size: city.size, delivered: city.display().heldText })),
+      cities: root.board.cities().map(({ land, city }) => ({ province: land.province, size: city.size, delivered: city.display()?.heldText ?? "nothing yet" })),
     };
     const json = JSON.stringify(f);
     if (json !== this.facts) this.facts = json;

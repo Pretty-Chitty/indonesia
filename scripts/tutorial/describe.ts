@@ -26,7 +26,7 @@ export function describeTable(root: Root, me: Player): string {
   const lines: string[] = [];
   lines.push(`Year ${root.year}, era ${root.era}, phase ${root.phase + 1} (${PHASES[root.phase] ?? "?"}); order ${root.playersInOrder().map((p) => p.name).join(", ")}`);
   lines.push(`On offer: ${root.market.deeds.map((d) => d.name).join(", ") || "-"}`);
-  const cities = root.board.cities().map(({ land, city }) => `${land.province} ${land.areaId} size ${city.size} (${city.display().heldText})`);
+  const cities = root.board.cities().map(({ land, city }) => `${land.province} ${land.areaId} size ${city.size} (${city.display()?.heldText ?? "nothing yet"})`);
   lines.push(`Cities: ${cities.join("; ") || "-"}`);
   const t = root.market.merger;
   if (t.active) lines.push(`Merger on the table: ${t.title}; bid ${t.bid} by ${t.highId || "-"}`);

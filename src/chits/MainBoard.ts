@@ -1,13 +1,13 @@
 import { CameraSpec, ChildOutlet, Chit, ChitRenderSpec, Ordered, OrderedOutlet, PanelTab } from "@pretty-chitty/core";
-import { BoxGeometry, Mesh, MeshPhongMaterial, PlaneGeometry, RepeatWrapping, Vector3 } from "three";
+import { BoxGeometry, Mesh, Vector3 } from "three";
 import { StaticImage } from "@pretty-chitty/core";
-import { BOARD, TABLE } from "../art";
+import { BOARD } from "../art";
 import { BoardTabIcon, LAND_BROWN } from "../canvas/Icons";
 import { BOARD_THICKNESS, CitySize, Good, Province } from "../consts";
 import { LAND_AREAS, SEA_AREAS } from "../geometry/map";
 import { coastSeas, landNeighbours, provinceAreas, SHOWN_H, SHOWN_W } from "../geometry/mapIndex";
 import { DeliveryProblem, seasBorderingAreas, shipExpansionSeas, zonesOf } from "../logistics";
-import { artMaterial, colorMaterial } from "../render";
+import { artMaterial, colorMaterial, tableTop } from "../render";
 import { City } from "./City";
 import { StartMarker } from "./StartMarker";
 import { Company } from "./Company";
@@ -188,8 +188,9 @@ export class MainBoard extends Chit {
   cityCanGrow(city: City): boolean {
     if (city.size >= 3) return false;
     const produced = this.producedGoods();
-    // with nothing produced anywhere a city has received nothing, so it does not grow (Q-growth-empty)
-    if (!produced.length) return false;
+    // a city needs only the goods produced on the board: with nothing produced it lacks nothing, and grows
+    // (Q-growth-empty)
+    if (!produced.length) return true;
     return produced.every((g) => city.deliveredGoods().filter((d) => d.good === g).length >= city.size);
   }
 
@@ -212,12 +213,8 @@ export class MainBoard extends Chit {
     spec.object = slab;
     spec.childrenOffsetZ = 0;
     // the DLC's wooden table under everything
-    const tex = StaticImage.texture(TABLE);
-    tex.wrapS = tex.wrapT = RepeatWrapping;
-    tex.repeat.set(12, 24);
-    const table = new Mesh(new PlaneGeometry(200, 200), new MeshPhongMaterial({ map: tex, shininess: 5 }));
+    const table = tableTop(200);
     table.position.z = -BOARD_THICKNESS - 0.02;
-    table.receiveShadow = true;
     spec.ornaments.push(table);
     spec.camera = new CameraSpec();
     spec.camera.paddingTop = 4;

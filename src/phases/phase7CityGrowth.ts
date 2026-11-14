@@ -12,7 +12,8 @@ export async function executeCityGrowth(root: Root) {
   const all = root.board.cities();
   const candidates = all.filter(({ city }) => root.board.cityCanGrow(city));
   for (const size of [2, 1] as CitySize[]) {
-    // larger cities first, so a size 2 city's returned marker cannot be reused by a size 1 city in the same phase
+    // larger cities first: a size 2 city that grows returns its marker to the supply, where a size 1 city growing
+    // after it may take it (P7.4)
     let group = candidates.filter(({ city }) => city.size === size);
     const next = (size + 1) as CitySize;
     const available = root.tracks.supply.count(next);

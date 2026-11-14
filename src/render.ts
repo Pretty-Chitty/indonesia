@@ -10,9 +10,13 @@ import {
   Material,
   Mesh,
   MeshPhongMaterial,
+  MeshPhongMaterialParameters,
+  PlaneGeometry,
+  RepeatWrapping,
   Shape,
   ShapeGeometry,
 } from "three";
+import { TABLE } from "./art";
 import { CLICK_COLOR } from "./consts";
 
 /** The one outline colour that means "you can click this". Set at the top of every render(). */
@@ -127,5 +131,22 @@ export function underBoardShape(rings: [number, number][][], hex: string): Mesh 
   mesh.position.z = -UNDER_BOARD;
   mesh.castShadow = false;
   mesh.receiveShadow = false;
+  return mesh;
+}
+
+/** World units per repeat of the table texture: the planks are the same size on every panel. */
+const TABLE_TILE = { x: 15, y: 7.5 };
+/** The wooden table under a panel: a square `size` wide. Every panel shares one table texture, so the tiling is put in
+ *  this plane's UVs and the texture's own repeat is never changed: a repeat set by one panel changed every other
+ *  panel's planks whenever that panel drew again ("the scale of the table texture changes randomly"). */
+export function tableTop(size: number, material: MeshPhongMaterialParameters = {}): Mesh {
+  const tex = StaticImage.texture(TABLE);
+  tex.wrapS = tex.wrapT = RepeatWrapping;
+  const geom = new PlaneGeometry(size, size);
+  const uv = geom.getAttribute("uv");
+  for (let i = 0; i < uv.count; i++) uv.setXY(i, (uv.getX(i) * size) / TABLE_TILE.x, (uv.getY(i) * size) / TABLE_TILE.y);
+  uv.needsUpdate = true;
+  const mesh = new Mesh(geom, new MeshPhongMaterial({ map: tex, shininess: 5, ...material }));
+  mesh.receiveShadow = true;
   return mesh;
 }

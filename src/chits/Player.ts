@@ -1,13 +1,13 @@
-import { CameraSpec, ChildOutlet, ChitRenderSpec, HiddenPropertySerializationRule, Ordered, OrderedOutlet, PlayerChit, SparkChit, StaticImage } from "@pretty-chitty/core";
+import { CameraSpec, ChildOutlet, ChitRenderSpec, HiddenPropertySerializationRule, Ordered, OrderedOutlet, PlayerChit, SparkChit } from "@pretty-chitty/core";
 import { hideFromOthers } from "../secret";
-import { Color, Group, Mesh, MeshPhongMaterial, PlaneGeometry, RepeatWrapping, Vector3 } from "three";
-import { TABLE } from "../art";
+import { Color, Group, Vector3 } from "three";
 import { Company, COMPANY_ROW_GAP, COMPANY_SLOT_W, companyHeight } from "./Company";
 import { CityCard } from "./CityCard";
 import { BankSpark, CashSpark, EarningsSpark, ResearchSpark } from "./Sparks";
 import { AID_H, AID_W, BID_MULTIPLIER, CITY_CARD_H, CITY_CARD_W, DEED_H, DEED_W, RndTrack } from "../consts";
 import { CityHand } from "./CityHand";
 import { MoneyMat } from "./MoneyMat";
+import { tableTop } from "../render";
 
 /** A player: their cash, Bank and this year's earnings (open or secret, S7), their R&D levels (the cubes on the board
  *  show them), their aid sheet with their money, their city card stack, and their companies. */
@@ -111,18 +111,11 @@ export class Player extends PlayerChit {
   override render(spec: ChitRenderSpec): void {
     spec.object = new Group();
     spec.childrenOffsetZ = 0;
-    const tex = StaticImage.texture(TABLE);
-    tex.wrapS = tex.wrapT = RepeatWrapping;
-    tex.repeat.set(8, 16);
     // the wood tinted toward the player's colour: a straight multiply of the dark wood by a saturated colour is muddy,
     // so the tint is lifted toward white and a little of the colour is added back as glow
     const tint = new Color(this.color).lerp(new Color("#ffffff"), 0.35);
-    const table = new Mesh(
-      new PlaneGeometry(120, 120),
-      new MeshPhongMaterial({ map: tex, shininess: 5, color: tint, emissive: new Color(this.color), emissiveIntensity: 0.22 }),
-    );
+    const table = tableTop(120, { color: tint, emissive: new Color(this.color), emissiveIntensity: 0.22 });
     table.position.z = -0.02;
-    table.receiveShadow = true;
     spec.ornaments.push(table);
     spec.camera = new CameraSpec();
     spec.camera.paddingTop = 22;

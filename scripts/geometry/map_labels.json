@@ -484,5 +484,7 @@
   179,
   67
  ],
- "_not_land": "Regions the detector takes for land that are open water closed off by arrows, sea lines and coasts: 133 the Sunda Strait (no arrow is printed across it), 179 the strait between Flores and Sumba (the arrow joins 173 and 181), 67 the water between Halmahera's southern islets (the arrows join 76 to 58 and to 42). 46 and 55 the Gulf of Tomini, the bay inside Sulawesi's arms (pale paper, no sea line inside, open to the sea east of it). The builder folds them into the sea round them."
+ "_not_land": "Regions the detector takes for land that are open water closed off by arrows, sea lines and coasts: 133 the Sunda Strait (no arrow is printed across it), 179 the strait between Flores and Sumba (the arrow joins 173 and 181), 67 the water between Halmahera's southern islets (the arrows join 76 to 58 and to 42). 46 and 55 the Gulf of Tomini, the bay inside Sulawesi's arms (pale paper, no sea line inside, open to the sea east of it). The builder folds them into the sea round them.",
+ "coast_fixes": {"remove": [[142, 127]], "add": [[148, 129]]},
+ "_coast_fixes": "Land-sea contacts the detector got wrong, checked against the print. The S127/S129 sea line meets Jawa's north coast in the middle of area 148, so 148 touches both seas; 142 (the nub east of it) faces S129 only. The detector gave 142 a 13 px contact with S127 across bright paper and missed 148-S129."
 }
