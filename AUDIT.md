@@ -143,11 +143,9 @@ taken), ❌ missing, 🎨 deliberate simplification. Mechanical checks at the en
   increments, which is four verbs about the prompt, not four options).
 - No `Math.random`, `Date.now` or module-level mutable state in game logic; all randomness is `turn.takeRng`.
 - Every `new GoodsMarker` / `new Ship` is an unlimited supply by the book (C6, C9); city markers are finite.
-- `minPlayers 2`, `maxPlayers 5` match the rulebook. `implementationNotes` gives every reading a player would notice:
-  the money option (secret by default), the unused "Hull Company" row, the Tracks panel, selling city by city by the
-  cheapest route (P6P.10), free expansion by the full Expansion level (Q-free-expansion), earnings kept from paid expansion
-  (Q-earnings), growth of every city when nothing is produced (Q-growth-empty), the goods displays with wooden markers (C9), prahus
-  and steamers for a player's two lines (Q-ship-type) and the tutorial's table.
+- `minPlayers 2`, `maxPlayers 5` match the rulebook. `implementationNotes` lists only where the port differs from the
+  2009 rulebook and its components: the unused "Hull Company" row of the second-edition board, a sale taking
+  its line's cheapest route through the ship picked (P6P.10) and unlimited huts (C5). Readings of the rules and the match options are not repeated there.
 
 ## Not implemented
 

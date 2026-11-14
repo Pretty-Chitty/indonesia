@@ -69,6 +69,6 @@ commit it). It publishes the game, so only the developer runs it or approves it.
 
 ## Rulings
 
-The port follows the 2009 rulebook. Where the book is silent or the port reads it one way, `RULES.md`'s open
-questions table records the default in force, and `AUDIT.md` marks every reading with ⚠️ or 🎨. The ones a player
-will notice are listed in `implementationNotes` in `src/Indonesia.ts`.
+The port follows the 2009 rulebook. Where the book is silent or the port reads it one way, `RULES.md`'s rules
+questions table records the ruling and its source, and `AUDIT.md` marks every reading with ⚠️ or 🎨. The few places
+the port differs from the book are listed in `implementationNotes` in `src/Indonesia.ts`.
