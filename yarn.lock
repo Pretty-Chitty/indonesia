@@ -1626,8 +1626,10 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@pretty-chitty/cli@file:../pretty-chitty-cli":
-  version "2.1.0"
+"@pretty-chitty/cli@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@pretty-chitty/cli/-/cli-2.1.3.tgz#09ecaa3d5bbc323ac41ff6d4c0377f147aa0fb5c"
+  integrity sha512-+VqfYIgY5DJ+K07vXyYJIOtxnA2h0IKmbRrdksFnF8mY/GShydSl+XVUUjJeEkr1ah4HCKpxxvKeFqrPZ32SGQ==
   dependencies:
     "@babel/core" "^7.23.3"
     "@babel/plugin-proposal-class-properties" "^7.18.6"
@@ -1642,7 +1644,6 @@
     "@types/spritesmith" "^3.4.5"
     "@types/tmp" "^0.2.6"
     babel-loader "^9.1.3"
-    babel-plugin-transform-typescript-metadata "^0.3.2"
     basic-ftp "^5.0.5"
     chokidar "^3.6.0"
     color "^4.2.3"
@@ -1681,10 +1682,10 @@
     webpack-cli "^5.1.4"
     webpack-dev-server "^4.15.1"
 
-"@pretty-chitty/core@^2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@pretty-chitty/core/-/core-2.3.1.tgz#980f2df004a43205290f7c373d0492e0bbe03d52"
-  integrity sha512-C1mpIgFgR/UBuN92q21vtl4fV+JshPn23t5jSvRiDHfxt5m5TV9k6TEF7GgFE6tVxszUgvvbmntCOzKqIOrjig==
+"@pretty-chitty/core@^2.3.5":
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/@pretty-chitty/core/-/core-2.3.5.tgz#e98acfe84f96613ab3b2ad693220511ff08c5c7b"
+  integrity sha512-iU1CzIfVSl3n8uL2/178jCSpyxN5WFc7rHJ5GBSLRqyVnHthL9qStj9Jc6+0/0waYpyOYY64ALuWRy1rDKNqLw==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     "@emotion/react" "^11.11.0"
@@ -2520,13 +2521,6 @@ babel-plugin-polyfill-regenerator@^0.6.6:
   integrity sha512-M762rNHfSF1EV3SLtnCJXFoQbbIIz0OyRwnCmV0KPC7qosSfCO0QLTSuJX3ayAebubhE6oYBAYPrBA5ljowaZg==
   dependencies:
     "@babel/helper-define-polyfill-provider" "^0.6.8"
-
-babel-plugin-transform-typescript-metadata@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-typescript-metadata/-/babel-plugin-transform-typescript-metadata-0.3.2.tgz#7a327842d8c36ffe07ee1b5276434e56c297c9b7"
-  integrity sha512-mWEvCQTgXQf48yDqgN7CH50waTyYBeP2Lpqx4nNWab9sxEpdXVeKgfj1qYI2/TgUPQtNFZ85i3PemRtnXVYYJg==
-  dependencies:
-    "@babel/helper-plugin-utils" "^7.0.0"
 
 bail@^2.0.0:
   version "2.0.2"

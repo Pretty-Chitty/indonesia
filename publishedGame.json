@@ -22,13 +22,13 @@
       "currentValue": "secret"
     }
   ],
-  "version": "1.0.2",
-  "coreVersion": "2.3.1",
+  "version": "1.0.5",
+  "coreVersion": "2.3.5",
   "backgroundColor": "#1E1B0D",
   "foregroundColor": "#F4EEDBE6",
   "name": "Indonesia",
   "licenseInformation": "Indonesia is © Splotter Spellen. This implementation is a fan port for personal use.",
-  "implementationNotes": "Implements the 2009 English rulebook for 2–5 players, played on the second-edition board and pieces. Money is secret by default, as the book says: you see only your own cash, Bank and earnings, and everyone's amounts and their history are shown when the game ends. Set the Money option to Open to show every player's money throughout. Each player has one Hull track, as in the 2009 rules: the board's 'Hull Company' row is not used. The Turn Order track and the R&D table sit in their own panel beside the board. When a company operates, you choose its sales city by city. Only choices that still sell as many goods as possible are offered, each sale takes the cheapest route along the shipping line you pick, and 'sell the rest at the lowest fees' finishes them for you. A company that sold all its goods must expand by your full Expansion level, as far as there is room. This year's earnings reach your cash at the start of next year, so they cannot pay for paid expansions. In a year in which no goods are produced anywhere, every size 1 and 2 city grows, since it lacks nothing. Size 2 cities grow first, and size 1 cities may then take the markers they gave back. Goods sold to a city are shown with the wooden goods markers on the city's goods display, as many tables play it, rather than the book's cardboard counters. A player's first shipping line sails prahus and the second steamers, so the two are never confused. The tutorial is a three-player game with open money.",
+  "implementationNotes": "Implements the 2009 English rulebook for 2–5 players on the second-edition board. Each player has one Hull track, as in the 2009 rules, so the board's 'Hull Company' row is not used. You choose the ship each sale sails on, but it then takes the cheapest route along that ship's line that uses it; the book lets you choose the whole route. Ownership huts are not limited to the box's 8 per player.",
   "publisher": "Splotter Spellen",
   "designer": "Jeroen Doumen, Joris Wiersinga",
   "artist": "Jan Lipiński, Ynze Moedt, Jeroen Kesselaar",
@@ -60,6 +60,6 @@
       "requires": []
     }
   ],
-  "webEntry": "https://pretty-chitty.b-cdn.net/indonesia/game.b2603fda037c5b5a758e.js",
-  "nodeEntry": "https://pretty-chitty.b-cdn.net/indonesia/node.6e83e7c3c32335a1c201.js"
+  "webEntry": "https://pretty-chitty.b-cdn.net/indonesia/game.bcac1603081a3b2e24c4.js",
+  "nodeEntry": "https://pretty-chitty.b-cdn.net/indonesia/node.18436774e631afcc3cc5.js"
 }
