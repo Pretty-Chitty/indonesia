@@ -22,7 +22,7 @@
       "currentValue": "secret"
     }
   ],
-  "version": "1.0.7",
+  "version": "1.0.10",
   "coreVersion": "2.4.0",
   "backgroundColor": "#1E1B0D",
   "foregroundColor": "#F4EEDBE6",
@@ -60,6 +60,6 @@
       "requires": []
     }
   ],
-  "webEntry": "https://pretty-chitty.b-cdn.net/indonesia/game.511e73c69dcdd0484cb6.js",
-  "nodeEntry": "https://pretty-chitty.b-cdn.net/indonesia/node.4009040f88cbfd577a68.js"
+  "webEntry": "https://pretty-chitty.b-cdn.net/indonesia/game.d12820734de9e4ede0ed.js",
+  "nodeEntry": "https://pretty-chitty.b-cdn.net/indonesia/node.62ed71de864e4ebbe3ed.js"
 }

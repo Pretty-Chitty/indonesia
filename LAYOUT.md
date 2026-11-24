@@ -53,12 +53,12 @@ Phone (400 × 800):
 └──────────────┘
 ```
 
-All non-board panels fold into one tab group with the viewer's mat first and the opponents behind it.
+All non-board panels fold into one tab group with the viewer's mat first and the opponents behind it. The two groups
+split the height 52 : 48 at any phone height (2026-11-23; fixed minimums had folded a shorter phone into one group).
 
 Mid-size (panel area under ~890 wide, or ~950 when under 600 tall; added 2026-11-23, an unfolded foldable,
 ~830×400–550): the desktop tree's 520-wide table beside 320–400-wide mats no longer fit, so everything folded into
-one tab group. Now the table takes its usual share of the width (58% short, 64% otherwise), and the mat column
-takes the rest: the viewer's mat over a tab group of opponents. Between 600 and 700 wide the phone stack is used
+one tab group. Now the table takes 65% of the width at the left and the mat column 35% at the right (developer, 2026-11-23). The column holds the viewer's mat over a tab group of opponents. Between 600 and 700 wide the phone stack is used
 only from 450 tall; shorter windows take the side-by-side tree.
 
 ## Inside each panel
@@ -114,3 +114,8 @@ Every pick that changes the viewer's own holdings also focuses their mat.
   (`BOX_OLIVE`), khaki highlights (`BOX_KHAKI`), cream text, and the table wood stained the same olive. The click
   colour, shared by the tutorial's rings, arrows and buttons, is a rose (`CLICK_COLOR`), apart from every player
   and good colour (the developer, 2026-11-01: the brown chrome was not Indonesia's, the neon pink "too crazy").
+
+## Checking the layout
+
+`yarn layout:check` builds a Root and runs the engine's own layout code (`RootChit.getFlatLayout`) at phone, foldable,
+tablet and laptop panel sizes, and checks what each should show (`scripts/layout/check.ts`). `--print` lists every size.

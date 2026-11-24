@@ -1,6 +1,6 @@
 {
   "name": "indonesia",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "main": "src/Indonesia.ts",
   "author": "Josh Breckman <jbreckman@gmail.com>",
   "license": "MIT",
@@ -26,6 +26,7 @@
     "start": "pretty-chitty-cli watch",
     "build": "pretty-chitty-cli build",
     "deploy": "pretty-chitty-cli deploy",
+    "layout:check": "node scripts/layout/run.mjs",
     "tutorial:check": "node scripts/tutorial/coverage.mjs && node scripts/tutorial/run.mjs check",
     "tutorial:coverage": "node scripts/tutorial/coverage.mjs",
     "tutorial:trace": "node scripts/tutorial/run.mjs trace",

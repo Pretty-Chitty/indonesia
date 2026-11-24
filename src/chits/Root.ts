@@ -142,20 +142,17 @@ export class Root extends RootChit<Player> {
     // stack and takes the side-by-side tree below instead
     if (width < 600 || (width < 700 && height >= 450)) {
       // phone: the tabbed table on top; under it one tab group of mats with the viewer's first, so a bid (tracks)
-      // and the purse it is paid from (the mat) are on screen together
+      // and the purse it is paid from (the mat) are on screen together. At any height: with fixed minimums (230 +
+      // 210) a shorter phone folded the two into one tab group, so they share the height 52 : 48 instead
       return {
         direction: "vertical",
         collapseOrder: 30,
         splits: [
-          tabs(300, 230),
+          tabs(0, height * 0.52 * 0.95),
           {
-            direction: "optimizePreferVertical",
-            collapseOrder: 1,
-            splits: [...mine, ...theirs].map((m) => ({
-              ...m,
-              minWidth: 300,
-              minHeight: 210,
-            })),
+            panels: [...mine, ...theirs].map((m) => ({ ...m, minWidth: 0, minHeight: 0 })),
+            minWidth: 0,
+            minHeight: height * 0.48 * 0.95,
           },
         ],
       };
@@ -167,10 +164,11 @@ export class Root extends RootChit<Player> {
     const left = Math.max(520, Math.floor(width * (short ? 0.58 : 0.64)));
     // the column's share follows its minimum width, so a short window asks for wider mats too. When the table's 520
     // and the mats' 320 (400 short) no longer fit side by side (under ~890-950 wide: an unfolded foldable, ~830x400-550)
-    // the whole table folded into one tab group: there the table takes its share of the width and the mats the rest
+    // the whole table folded into one tab group: there the table takes 65% at the left and the mats 35% at the right
     const narrow = left + (short ? 400 : 320) > width;
-    const tableWidth = narrow ? Math.floor(width * (short ? 0.58 : 0.64)) : left;
-    const columnWidth = Math.floor((width - tableWidth) * 0.95);
+    // the split divides in proportion to the minimums; 95% of each leaves slack for rounding
+    const tableWidth = narrow ? Math.floor(width * 0.65 * 0.95) : left;
+    const columnWidth = Math.floor(width * 0.35 * 0.95);
     const wide = <M extends { minWidth: number }>(m: M): M =>
       narrow ? { ...m, minWidth: columnWidth } : short ? { ...m, minWidth: Math.max(m.minWidth, 400) } : m;
     return {
