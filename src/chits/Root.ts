@@ -138,7 +138,9 @@ export class Root extends RootChit<Player> {
       minWidth: w,
       minHeight: h,
     });
-    if (width < 700) {
+    // a short window 600-700 wide (a small foldable open, a phone on its side) has no height for the phone's
+    // stack and takes the side-by-side tree below instead
+    if (width < 600 || (width < 700 && height >= 450)) {
       // phone: the tabbed table on top; under it one tab group of mats with the viewer's first, so a bid (tracks)
       // and the purse it is paid from (the mat) are on screen together
       return {
@@ -163,13 +165,19 @@ export class Root extends RootChit<Player> {
     // larger share of the width or its companies are cut off at the right
     const short = height < 600;
     const left = Math.max(520, Math.floor(width * (short ? 0.58 : 0.64)));
-    // the column's share follows its minimum width, so a short window asks for wider mats too
-    const wide = <M extends { minWidth: number }>(m: M): M => (short ? { ...m, minWidth: Math.max(m.minWidth, 400) } : m);
+    // the column's share follows its minimum width, so a short window asks for wider mats too. When the table's 520
+    // and the mats' 320 (400 short) no longer fit side by side (under ~890-950 wide: an unfolded foldable, ~830x400-550)
+    // the whole table folded into one tab group: there the table takes its share of the width and the mats the rest
+    const narrow = left + (short ? 400 : 320) > width;
+    const tableWidth = narrow ? Math.floor(width * (short ? 0.58 : 0.64)) : left;
+    const columnWidth = Math.floor((width - tableWidth) * 0.95);
+    const wide = <M extends { minWidth: number }>(m: M): M =>
+      narrow ? { ...m, minWidth: columnWidth } : short ? { ...m, minWidth: Math.max(m.minWidth, 400) } : m;
     return {
       direction: "horizontal",
       collapseOrder: 30,
       splits: [
-        tabs(left, 420),
+        tabs(tableWidth, 420),
         {
           direction: "vertical",
           collapseOrder: 2,

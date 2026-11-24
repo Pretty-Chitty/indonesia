@@ -55,6 +55,12 @@ Phone (400 × 800):
 
 All non-board panels fold into one tab group with the viewer's mat first and the opponents behind it.
 
+Mid-size (panel area under ~890 wide, or ~950 when under 600 tall; added 2026-11-23, an unfolded foldable,
+~830×400–550): the desktop tree's 520-wide table beside 320–400-wide mats no longer fit, so everything folded into
+one tab group. Now the table takes its usual share of the width (58% short, 64% otherwise), and the mat column
+takes the rest: the viewer's mat over a tab group of opponents. Between 600 and 700 wide the phone stack is used
+only from 450 tall; shorter windows take the side-by-side tree.
+
 ## Inside each panel
 
 **Board.** The board art is a 39.1 × 18.6 cardboard slab (thickness 0.06, edge in the frame's paper colour,
