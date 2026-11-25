@@ -22,8 +22,8 @@
       "currentValue": "secret"
     }
   ],
-  "version": "1.0.10",
-  "coreVersion": "2.4.0",
+  "version": "1.0.11",
+  "coreVersion": "2.4.1",
   "backgroundColor": "#1E1B0D",
   "foregroundColor": "#F4EEDBE6",
   "name": "Indonesia",
@@ -60,6 +60,6 @@
       "requires": []
     }
   ],
-  "webEntry": "https://pretty-chitty.b-cdn.net/indonesia/game.d12820734de9e4ede0ed.js",
-  "nodeEntry": "https://pretty-chitty.b-cdn.net/indonesia/node.62ed71de864e4ebbe3ed.js"
+  "webEntry": "https://pretty-chitty.b-cdn.net/indonesia/game.89ec43f9c4f5ea16830f.js",
+  "nodeEntry": "https://pretty-chitty.b-cdn.net/indonesia/node.c41ce6fdffc934c2e4e8.js"
 }

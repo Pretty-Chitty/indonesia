@@ -1626,10 +1626,10 @@
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
 
-"@pretty-chitty/cli@^2.1.4":
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/@pretty-chitty/cli/-/cli-2.1.4.tgz#9a2b295e32b0292a6682c77a71057dbf95c2e328"
-  integrity sha512-S/CcfKYTBLq0GEyurONea0OBrOhwxa4eX8i2gbBWudiNTJOP2tJOAErBX7i3ZLnkeox20SNNpEzMxKwKjpux0w==
+"@pretty-chitty/cli@^2.1.5":
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/@pretty-chitty/cli/-/cli-2.1.5.tgz#1979b327156182a709995a923a76e6daf2c55645"
+  integrity sha512-4BBZe0qzrA7w1YIN6Ja4EgxhWuP/m25wGd/FjWn3mUCKY368E2r7cQPlnWSWjVMPyrrf0XA3YR6vwo354j0+hA==
   dependencies:
     "@babel/core" "^7.23.3"
     "@babel/plugin-proposal-class-properties" "^7.18.6"
@@ -1682,10 +1682,10 @@
     webpack-cli "^5.1.4"
     webpack-dev-server "^4.15.1"
 
-"@pretty-chitty/core@^2.4.0":
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/@pretty-chitty/core/-/core-2.4.0.tgz#5cbcfb42d0aadb60343d6b7e0c82cc1c59e2b608"
-  integrity sha512-FZPaq4VxdcLrOg7QRhKxuxMHErTUmyzg1pacd1aWTTqOL8/QLKKyZoXogT7LIC5rW+pQPHNb/QPpCZccXn21Pg==
+"@pretty-chitty/core@^2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@pretty-chitty/core/-/core-2.4.1.tgz#d2bcc03b7f5463acec81c672e4b2941144be333f"
+  integrity sha512-94Yd5kKjiYjYh1iK+l2He2dshM1pm7UrVJXBzJZsxYZ8zFkQ9OhaXYtSD5f4/dmf9vsIhYfXxmjcVKOzgww3RQ==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
     "@emotion/react" "^11.11.0"

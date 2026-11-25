@@ -1,6 +1,6 @@
 {
   "name": "indonesia",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "src/Indonesia.ts",
   "author": "Josh Breckman <jbreckman@gmail.com>",
   "license": "MIT",
@@ -8,14 +8,14 @@
     "@fontsource/dancing-script": "^5.3.0",
     "@fontsource/eb-garamond": "^5.3.0",
     "@fontsource/quicksand": "^5.2.10",
-    "@pretty-chitty/core": "^2.4.0",
+    "@pretty-chitty/core": "^2.4.1",
     "color": "^4.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "three": "^0.158.0"
   },
   "devDependencies": {
-    "@pretty-chitty/cli": "^2.1.4",
+    "@pretty-chitty/cli": "^2.1.5",
     "@types/react": "^18.2.34",
     "@types/react-dom": "^18.2.14",
     "terser-webpack-plugin": "^5.6.1",
